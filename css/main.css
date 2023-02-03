@@ -1,0 +1,31 @@
+/* LOGIN CSS */
+form{
+    padding: 50px;
+    background-color: #B7435A;
+    border-radius: 5px;
+    margin: 50px;
+    font-family: "Calibri Light";
+}
+#head-form{
+    color: ghostwhite;
+    font-size: 20px;
+}
+
+.labelsColors{
+    color: ghostwhite;
+    font-size: 17px;
+}
+
+#button-login{
+    background-color: black;
+    color: white;
+    border-bottom-style: none;
+    border-color: white;
+}
+#button-login:hover{
+    background-color: white;
+    color: black;
+    border-bottom-style: none;
+    border-color: black;
+}
+
