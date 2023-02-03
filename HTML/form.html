@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <title>LOGIN</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <title>LOGIN-PAGE</title>
 </head>
 
 <body>
-  <form method="get" action="index.html" id="request" onsubmit="">
-    <div class="row">
-      <label for="name">Nom: <span> </span></label>
-      <input id="name" type="text" name="persona" placeholder="Diego" />
-    </div>
-    <div class="row">
-      <label for="pass">🔑 Enter Password: <span> </span></label><br />
-      <input id="pass" type="password" placeholder="Cool_Password123" />
-      <span class="eye" onclick="contrasenya()">
-        <label id="hide1">🔓</label>
-        <label id="hide2">🔒</label>
-      </span>
-    </div>
-    <br />
+<form>
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" id="form2Example1" class="form-control" />
+    <label class="form-label" for="form2Example1">Correo Electrónico</label>
+  </div>
 
-    <input type="submit" value="Accept" / <input id="res" type="reset" value="Reset" />
-  </form>
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" id="form2Example2" class="form-control" />
+    <label class="form-label" for="form2Example2">Contraseña</label>
+  </div>
+
+  <!-- Submit button -->
+  <button type="button" class="btn btn-primary btn-block mb-4">LOG IN</button>
+</form>
 </body>
 
 </html>
