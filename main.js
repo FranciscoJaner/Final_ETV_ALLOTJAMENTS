@@ -38,6 +38,7 @@ app.on("activate", () => {
 //renderers
 ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
+  console.log("Estoy en el main")
   const request = net.request({
     method: "POST",
     url: `http://etv.dawpaucasesnoves.com/etvServidor/public/api/login?email=${email}&password=${password}`,
@@ -57,7 +58,6 @@ ipcMain.on('login-data',(e,email,password)=>{
 
     // when response is complete, print body
     response.on("end", () => {
-      console.log(`BODY: ${body}`);
     });
   });
 
