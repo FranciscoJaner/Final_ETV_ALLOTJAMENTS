@@ -27,18 +27,17 @@ const template = [
   {
     label: "HOME",
     click: async () => {
-      const { mainWindow } = require("./main.js");
-      mainWindow.loadFile("index.html");
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./index.html");
     },
   },
   {
     label: "LOGIN",
     click: async () => {
-      const { mainWindow } = require("./main.js");
+      const { mainWindow } = require("../main.js");
       mainWindow.loadFile("./HTML/form.html");
     },
   },
 ];
 
-const menu = Menu.buildFromTemplate(template);
-module.exports.menu = menu;
+module.exports.menu = Menu.buildFromTemplate(template);

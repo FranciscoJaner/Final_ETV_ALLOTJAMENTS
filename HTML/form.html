@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <title>ETV-ALLOTJAMENTS</title>
-  </head>
-  <body>
-    <form method="get" action="index.html" id="request" onsubmit="">
-      <div class="row">
-        <label for="name">Nom: <span> </span></label>
-        <input id="name" type="text" name="persona" placeholder="Diego" />
-      </div>
-      <div class="row">
-        <label for="pass">🔑 Enter Password: <span> </span></label><br />
-        <input id="pass" type="password" placeholder="Cool_Password123" />
-        <span class="eye" onclick="contrasenya()">
-          <label id="hide1">🔓</label>
-          <label id="hide2">🔒</label>
-        </span>
-      </div>
-      <br />
 
-      <input type="submit" value="Accept" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <title>LOGIN</title>
+</head>
 
-      <input id="res" type="reset" value="Reset" />
-    </form>
-  </body>
+<body>
+  <form method="get" action="index.html" id="request" onsubmit="">
+    <div class="row">
+      <label for="name">Nom: <span> </span></label>
+      <input id="name" type="text" name="persona" placeholder="Diego" />
+    </div>
+    <div class="row">
+      <label for="pass">🔑 Enter Password: <span> </span></label><br />
+      <input id="pass" type="password" placeholder="Cool_Password123" />
+      <span class="eye" onclick="contrasenya()">
+        <label id="hide1">🔓</label>
+        <label id="hide2">🔒</label>
+      </span>
+    </div>
+    <br />
+
+    <input type="submit" value="Accept" / <input id="res" type="reset" value="Reset" />
+  </form>
+</body>
+
 </html>
