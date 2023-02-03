@@ -1,6 +1,6 @@
 //requires
 const {app, BrowserWindow, webContents, session, Menu, ipcMain,} = require("electron");
-const { menu } = require("./JS/menu.js");
+const { menu } = require("./js/menu.js");
 const { net } = require('electron')
 
 //variable globals
