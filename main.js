@@ -6,6 +6,7 @@ const querystring = require("querystring");
 
 //variable globals
 let mainWindow;
+let tokenKey;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -36,17 +37,22 @@ app.on("activate", () => {
   if (mainWindow === null) createWindow();
 });
 
+function chargeToken(tokens) {
+  tokenKey = JSON.parse(tokens)
+  tokenKey = tokenKey.data.token;
+}
+
 //renderers
 ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
-  console.log("Estoy en el main")
-
   const request = net.request({
     method: "POST",
     hostname: 'etv.dawpaucasesnoves.com',
     protocol: 'http:',
-    path: '/etvServidor/public/api/login?'
+    path: '/etvServidor/public/api/login'
   });
+
+  let body;
 
   let postData = JSON.stringify({
     'email' : `${email}`,
@@ -58,7 +64,8 @@ ipcMain.on('login-data',(e,email,password)=>{
     console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
 
     response.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`)
+      body = (`${chunk}`);
+      chargeToken(body)
     });
   });
   request.on('finish', () => {
@@ -76,4 +83,12 @@ ipcMain.on('login-data',(e,email,password)=>{
   request.setHeader('Content-Type', 'application/json');
   request.write(postData, 'utf-8');
   request.end();
+ /* console.log(typeof(body))//vamos a mirar de que tipo es
+
+  token = JSON.parse(body);
+  console.log(body)
+  console.log(token)
+  token = token.token;
+  console.log(token)*/
+  
 })
