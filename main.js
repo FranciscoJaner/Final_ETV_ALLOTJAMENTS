@@ -2,6 +2,7 @@
 const {app, BrowserWindow, webContents, session, Menu, ipcMain,} = require("electron");
 const { menu } = require("./js/menu.js");
 const { net } = require('electron')
+const querystring = require("querystring");
 
 //variable globals
 let mainWindow;
@@ -39,28 +40,40 @@ app.on("activate", () => {
 ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
   console.log("Estoy en el main")
+
   const request = net.request({
     method: "POST",
-    url: `http://etv.dawpaucasesnoves.com/etvServidor/public/api/login?email=${email}&password=${password}`,
+    hostname: 'etv.dawpaucasesnoves.com',
+    protocol: 'http:',
+    path: '/etvServidor/public/api/login?'
   });
-  let body = "";
-  request.on("response", (response) => {
-    // check response.statusCode to determine if the request succeeded
+
+  let postData = JSON.stringify({
+    'email' : `${email}`,
+    'password': `${password}`
+  });
+
+  request.on('response', (response) => {
     console.log(`STATUS: ${response.statusCode}`);
     console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
 
-    // capture body of response
-    // - can be called more than once for large result
-    response.on("data", (chunk) => {
-      console.log(`BODY: ${chunk}`);
-      body += chunk.toString();
-    });
-
-    // when response is complete, print body
-    response.on("end", () => {
+    response.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`)
     });
   });
-
+  request.on('finish', () => {
+    console.log('Request is Finished')
+  });
+  request.on('abort', () => {
+    console.log('Request is Aborted')
+  });
+  request.on('error', (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`)
+  });
+  request.on('close', (error) => {
+    console.log('Last Transaction has occurred')
+  });
+  request.setHeader('Content-Type', 'application/json');
+  request.write(postData, 'utf-8');
   request.end();
-
 })
