@@ -39,14 +39,15 @@ app.on("activate", () => {
 
 function chargeToken(tokens) {
   tokenKey = JSON.parse(tokens)
-  tokenKey = tokenKey.data.token;
+  tokenKey = tokenKey.result.TOKEN;
+  console.log(tokenKey)
 }
 
 //renderers
 ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
   const request = net.request({
-    method: "POST",
+    method: "GET",
     hostname: 'www.etvtauladesfons.com',
     protocol: 'http:',
     path: '/api/login'
@@ -84,7 +85,7 @@ ipcMain.on('login-data',(e,email,password)=>{
   request.write(postData, 'utf-8');
   request.end();
 
-  e.sender.send('login-finished');
+  //e.sender.send('login-finished');
 })
 
 /*ipcMain.on('load-content',function (e) {
