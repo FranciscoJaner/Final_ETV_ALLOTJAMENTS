@@ -118,10 +118,7 @@ ipcMain.on('load-content',function (e) {
   request.on('close', (error) => {
     console.log('Last Transaction has occurred')
   });
-  request.setHeader('Content-Type', 'application/json');
-  request.write(postData, 'utf-8');
   request.end();
-
   e.sender.send('login-finished');
 })
 
