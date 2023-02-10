@@ -47,16 +47,16 @@ ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
   const request = net.request({
     method: "POST",
-    hostname: 'etv.dawpaucasesnoves.com',
+    hostname: 'www.etvtauladesfons.com',
     protocol: 'http:',
-    path: '/etvServidor/public/api/login'
+    path: '/api/login'
   });
 
   let body;
 
   let postData = JSON.stringify({
-    'email' : `${email}`,
-    'password': `${password}`
+    'CORREU_ELECTRONIC' : `${email}`,
+    'CONTRASENYA': `${password}`
   });
 
   request.on('response', (response) => {
@@ -87,7 +87,7 @@ ipcMain.on('login-data',(e,email,password)=>{
   e.sender.send('login-finished');
 })
 
-ipcMain.on('load-content',function (e) {
+/*ipcMain.on('load-content',function (e) {
   const request = net.request({//mirar si los datos son iguales
     method: "GET",
     hostname: 'etv.dawpaucasesnoves.com',
@@ -120,5 +120,5 @@ ipcMain.on('load-content',function (e) {
   });
   request.end();
   e.sender.send('login-finished');
-})
+})*/
 

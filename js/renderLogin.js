@@ -14,7 +14,6 @@ button.addEventListener('click',function () {
 ipcRenderer.on('login-finished',function (e) {
     console.log('hemos llegado al renderer con el token')
     e.sender.send('load-content');
-
 })
 
 
