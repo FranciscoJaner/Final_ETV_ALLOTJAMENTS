@@ -1,9 +1,11 @@
+const { ipcRenderer } = require ('electron');
+
 function validar() {
 
-  let okay_pass = validar_passwd();
+  let okay_passwd = validar_passwd();
   let okay_email= validar_email();
 
-  return okay_pass && okay_email;
+  ipcRenderer.send('verificacion',okay_passwd && okay_email) ;
 }
 
 function validar_passwd() {
@@ -31,7 +33,7 @@ function validar_passwd() {
 
 function validar_email() {
   let patron = /^[a-z]{3,}((_[a-z]{3,})*|(\.[a-z]{3,})*)?@[a-z]{3,}[.][a-z]{2,4}$/;
-  let elemeto = document.getElementById("#emailForm");
+  let elemeto = document.getElementById("emailForm");
   let mensaje = document.querySelector("label[for='emailForm'] span")
 
   if (elemeto.value.length !== 0)
