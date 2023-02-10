@@ -35,7 +35,7 @@ const template = [
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/form.html");
+      mainWindow.loadFile("./HTML/newform.html");
     },
   },
 ];

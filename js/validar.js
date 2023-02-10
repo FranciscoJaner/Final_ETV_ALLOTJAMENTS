@@ -1,61 +1,54 @@
 function validar() {
-  let ok_email = validar_email();
-  let ok_password = validar_contrasenya();
 
-  return ok_email && ok_password;
+  let okay_pass = validar_passwd();
+  let okay_email= validar_email();
+
+  return okay_pass && okay_email;
 }
 
-function contrasenya() {
-  let x = document.getElementById("pass");
-  let y = document.getElementById("hide1");
-  let z = document.getElementById("hide2");
+function validar_passwd() {
+  let patron = /^[a-zA-Z0-9]{6,}$/;
+  let elemeto = document.getElementById("passwordForm");
+  let mensaje = document.querySelector("label[for='passwordForm'] span");
 
-  if (x.type === "password") {
-    x.type = "text";
-    y.style.display = "block";
-    z.style.display = "none";
-  } else {
-    x.type = "password";
-    y.style.display = "none";
-    z.style.display = "block";
+  if (elemeto.value.length !== 0)
+  {
+    if (patron.test(elemeto.value))
+    {
+      mensaje.innerHTML = "";
+      return true;
+    }
+    else
+    {
+      mensaje.innerHTML = "Incorrecto";
+      return false;
+    }
   }
+  mensaje.textContent = "*Obligatorio";
+
+  return false;
 }
 
 function validar_email() {
-  let patron = `/^[a-z]{3,}((_[a-z]{3,})*|(.[a-z]{3,})*)?@[a-z]{3,}[.][a-z]{2,4}$/`;
-  let elemento = document.querySelector("#emailForm");
-  let mensaje = document.querySelector("label[for='emailForm'] span");
+  let patron = /^[a-z]{3,}((_[a-z]{3,})*|(\.[a-z]{3,})*)?@[a-z]{3,}[.][a-z]{2,4}$/;
+  let elemeto = document.getElementById("#emailForm");
+  let mensaje = document.querySelector("label[for='emailForm'] span")
 
-  if (elemento.value.length !== 0) {
-    if (patron.test(elemento.value)) {
+  if (elemeto.value.length !== 0)
+  {
+    if (patron.test(elemeto.value))
+    {
       mensaje.innerHTML = "";
       return true;
-    } else {
-      mensaje.innerHTML = " Incorrect";
+    }
+    else
+    {
+      mensaje.innerHTML = "Incorrecto";
       return false;
     }
   }
-  mensaje.innerHTML = " Required";
+  mensaje.innerHTML = "*Obligatorio";
 
-  return false;
-}
+  return false;}
 
-function validar_contrasenya() {
-  let patron = `/^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/`;
-  let elemento = document.querySelector("#passwordForm");
-  let mensaje = document.querySelector("label[for='passwordForm'] span");
 
-  if (elemento.value.length !== 0) {
-    if (patron.test(elemento.value)) {
-      mensaje.innerHTML = "";
-      return true;
-    } else {
-      mensaje.innerHTML =
-        " It must have: 8 Characters, at least 1 letter and 1 number";
-      return false;
-    }
-  }
-  mensaje.innerHTML = " Required";
-
-  return false;
-}

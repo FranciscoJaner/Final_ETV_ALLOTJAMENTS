@@ -1,61 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/main.css" />
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <title>LOGIN-PAGE</title>
-  </head>
+</head>
 
-  <body>
-    <form
-      method="get"
-      action="result.html"
-      id="login"
-      onsubmit="return validar()"
-    >
-      <!-- Title of form -->
-      <div class="text-center col-sm-12" id="head-form">
+<body>
+<form method="get" id="login" onsubmit="return validar()">
+    <!-- Title of form -->
+    <div class="text-center col-sm-12" id="head-form">
         <h4>Login 4 API</h4>
-      </div>
+    </div>
 
-      <!-- Email input -->
-      <div class="form-outline mb-3">
+    <!-- Email input -->
+    <div class="form-outline mb-3">
         <label class="form-label labelsColors" for="emailForm"
-          >Correo Electrónico</label
+        >Correo Electrónico</label
         >
         <input
-          type="email"
-          id="emailForm"
-          class="form-control"
-          placeholder="joan@gmail.com"
+                type="email"
+                id="emailForm"
+                class="form-control"
+                placeholder="joan@gmail.com"
         />
-      </div>
+    </div>
 
-      <!-- Password input -->
-      <div class="form-outline mb-3">
+    <!-- Password input -->
+    <div class="form-outline mb-3">
         <label class="form-label labelsColors" for="passwordForm"
-          >Contraseña</label
+        >Contraseña</label
         >
-        <input type="password" id="passwordForm" class="form-control" />
-      </div>
+        <input type="password" id="passwordForm" class="form-control"/>
+    </div>
 
-      <!-- Submit button -->
-      <button
-        type="submit"
-        value="Accept"
-        class="btn btn-primary btn-block mb-4"
-        id="button-login"
-      >
+    <!-- Submit button -->
+    <button
+            type="submit"
+            value="Accept"
+            class="btn btn-primary btn-block mb-4"
+            id="button-login"
+    >
         LOG IN
-      </button>
-    </form>
-    <script src="../js/renderLogin.js"></script>
-    <script src="../js/validar.js"></script>
-  </body>
+    </button>
+</form>
+<script src="../js/renderLogin.js"></script>
+<script src="../js/validar.js"></script>
+</body>
 </html>
