@@ -11,3 +11,8 @@ button.addEventListener('click',function () {
 
 //renderers
 
+ipcRenderer.on('login-finished',function (e) {
+    e.sender.send('load-content');
+})
+
+

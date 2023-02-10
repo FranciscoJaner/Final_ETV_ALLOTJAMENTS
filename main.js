@@ -83,12 +83,45 @@ ipcMain.on('login-data',(e,email,password)=>{
   request.setHeader('Content-Type', 'application/json');
   request.write(postData, 'utf-8');
   request.end();
- /* console.log(typeof(body))//vamos a mirar de que tipo es
 
-  token = JSON.parse(body);
-  console.log(body)
-  console.log(token)
-  token = token.token;
-  console.log(token)*/
-  
+  e.sender.send('login-finished');
 })
+
+ipcMain.on('load-content',function (e) {
+  const request = net.request({//mirar si los datos son iguales
+    method: "GET",
+    hostname: 'etv.dawpaucasesnoves.com',
+    protocol: 'http:',
+    path: '/etvServidor/public/api/login'
+  });
+
+  let body;
+
+  request.on('response', (response) => {
+    console.log(`STATUS: ${response.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
+
+    response.on('data', (chunk) => {
+      body = (`${chunk}`);
+      chargeToken(body)
+    });
+  });
+  request.on('finish', () => {
+    console.log('Request is Finished')
+  });
+  request.on('abort', () => {
+    console.log('Request is Aborted')
+  });
+  request.on('error', (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`)
+  });
+  request.on('close', (error) => {
+    console.log('Last Transaction has occurred')
+  });
+  request.setHeader('Content-Type', 'application/json');
+  request.write(postData, 'utf-8');
+  request.end();
+
+  e.sender.send('login-finished');
+})
+
