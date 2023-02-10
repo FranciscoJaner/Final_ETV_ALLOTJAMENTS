@@ -7,6 +7,8 @@ const querystring = require("querystring");
 //variable globals
 let mainWindow;
 let tokenKey;
+let hostname = "www.etvtauladesfons.com";
+let protocol = "http:";
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -47,9 +49,9 @@ function chargeToken(tokens) {
 ipcMain.on('login-data',(e,email,password)=>{
   //ahora tenemos que enviar la petición
   const request = net.request({
-    method: "GET",
-    hostname: 'www.etvtauladesfons.com',
-    protocol: 'http:',
+    method: "POST",
+    hostname: hostname,
+    protocol: protocol,
     path: '/api/login'
   });
 
@@ -61,8 +63,6 @@ ipcMain.on('login-data',(e,email,password)=>{
   });
 
   request.on('response', (response) => {
-    console.log(`STATUS: ${response.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
 
     response.on('data', (chunk) => {
       body = (`${chunk}`);
