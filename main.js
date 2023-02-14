@@ -1,3 +1,4 @@
+//requires
 const {
   app,
   BrowserWindow,
@@ -59,7 +60,7 @@ function getDadesMapa(dades) {
   longitud = dadesmapa.result.LONGITUD;
   latitud = dadesmapa.result.LATIUD;
   console.log("main, longitud, latitud: " + latitud + ", " + longitud);
-}
+
 
 //renderers
 ipcMain.on("login-data", (e, email, password) => {
@@ -140,6 +141,7 @@ ipcMain.on("load-content", function (e) {
   request.end();
   e.sender.send("login-finished");
 });
+
 
 // main para allotjaments
 ipcMain.on("load-content", function (e) {
