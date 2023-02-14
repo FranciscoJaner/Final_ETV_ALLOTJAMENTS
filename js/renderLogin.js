@@ -1,24 +1,22 @@
-const { ipcRenderer } = require ('electron')
+const { ipcRenderer } = require("electron");
 
 //POINTERS
-let email = document.getElementById('emailForm');
-let passwd = document.getElementById('passwordForm');
-let button = document.getElementById('button-login')
-//event
+const correo = document.getElementById("email").value;
+const passwd = document.getElementById("passwd").value;
+let button = document.getElementById("button-login");
+//events
 
-ipcRenderer.on('verificacion',function (event, args) {
-    if (args)
-    {
-        button.addEventListener('click',function () {
-                ipcRenderer.send('login-data',email.value,passwd.value);
-        })
-    }
-})
-//renderers
+button.addEventListener("click", function () {
+  if (correo.length() < 1 || !passwd.length() < 1) {
+    alert("Por favor complete todos los campos.");
+    return;
+  } else {
+    // Enviar datos al ipcmain
+    ipcRenderer.send("login-data", correo, passwd);
+  }
+});
 
-ipcRenderer.on('login-finished',function (e) {
-    console.log('hemos llegado al renderer con el token')
-    e.sender.send('load-content');
-})
-
-
+ipcRenderer.on("login-finished", function (e) {
+  console.log("hemos llegado al renderer con el token");
+  e.sender.send("load-content");
+});

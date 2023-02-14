@@ -1,6 +1,6 @@
 const { ipcRenderer } = require("electron");
 
-var map = L.map("map").setView([51.505, -0.09], 13);
+var map = L.map("map").setView([34.505, 3.09], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -8,9 +8,9 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-var marker = L.marker([200.5, -0.09]).addTo(map); // cambiar latitud y longitud por resultado de la api
+var marker = L.marker([60.354614, -0.995893]).addTo(map); // cambiar latitud y longitud por resultado de la api
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+marker.bindPopup("<b>Location Allotjament</b>.").openPopup();
 
 var popup = L.popup();
 
