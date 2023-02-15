@@ -43,7 +43,6 @@ app.on("activate", () => {
 
 function chargeToken(tokens) {
   tokenKey = JSON.parse(tokens);
-  console.log(tokenKey)
   tokenKey = tokenKey.data.token;
   console.log(tokenKey);
 }
@@ -56,7 +55,7 @@ function getDadesMapa(dades) {
 }
 
 //renderers
-ipcMain.on("login-data", function (e, email, password){
+ipcMain.on("login-data", function (e, email, password) {
   //ahora tenemos que enviar la petición
   const request = net.request({
     method: "POST",
@@ -72,13 +71,9 @@ ipcMain.on("login-data", function (e, email, password){
     password: `${password}`,
   });
 
-  console.log("POSTTT DATAAA")
-  console.log(postData)
-
   request.on("response", (response) => {
     response.on("data", (chunk) => {
       body = `${chunk}`;
-      console.log(body)
       chargeToken(body);
     });
   });
@@ -99,44 +94,6 @@ ipcMain.on("login-data", function (e, email, password){
   request.end();
 
   //e.sender.send('login-finished');
-});
-
-ipcMain.on("load-content", function (e) {
-  const request = net.request({
-    //mirar si los datos son iguales
-    method: "GET",
-    hostname: hostname,
-    protocol: protocol,
-    path: "/etvServidor/public/api/login",
-    headers: {
-      Authorization: `Bearer ${tokenKey}`,
-    },
-  });
-
-  let body;
-
-  request.on("response", (response) => {
-    console.log(`STATUS: ${response.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-
-    response.on("data", (chunk) => {
-      e.sender.send("canal1", chunk);
-    });
-  });
-  request.on("finish", () => {
-    console.log("Request is Finished");
-  });
-  request.on("abort", () => {
-    console.log("Request is Aborted");
-  });
-  request.on("error", (error) => {
-    console.log(`ERROR: ${JSON.stringify(error)}`);
-  });
-  request.on("close", (error) => {
-    console.log("Last Transaction has occurred");
-  });
-  request.end();
-  e.sender.send("login-finished");
 });
 
 // main para allotjaments
