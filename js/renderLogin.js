@@ -8,7 +8,7 @@ let button = document.getElementById("button-login");
 
 button.addEventListener("click", function () {
   if (correo.length() < 1 || !passwd.length() < 1) {
-    alert("Por favor complete todos los campos.");
+    alert("Por favor complete todos los campos.asdasd");
     return;
   } else {
     // Enviar datos al ipcmain
