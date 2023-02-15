@@ -1,52 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <title>LOGIN-PAGE</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <form>
-      <div class="text-center col-sm-12" id="head-form">
-        <h4>Login 4 API</h4>
-      </div>
+        <div class="text-center col-sm-12" id="head-form">
+            <h4>Login 4 API</h4>
+        </div>
 
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          aria-describedby="emailHelp"
-          placeholder="Introduce tu email"
-        />
-        <small id="emailHelp" class="form-text text-muted"
-          >Logeate para poder acceder al contenido de la api.</small
-        >
-      </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="Introduce tu email" />
+            <small id="emailHelp" class="form-text text-muted">Logeate para poder acceder al contenido de la
+                api.</small>
+        </div>
 
-      <div class="form-group">
-        <label for="passwd">Contraseña</label>
-        <input
-          type="password"
-          class="form-control"
-          id="passwd"
-          placeholder="Introduce tu contraseña"
-        />
-      </div>
+        <div class="form-group">
+            <label for="passwd">Contraseña</label>
+            <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña" />
+        </div>
 
-      <button type="submit" class="btn btn-primary" id="button-login">
-        Logearse
-      </button>
+        <button type="submit" class="btn btn-primary" id="button-login">
+            Logearse
+        </button>
     </form>
 
     <script src="../js/renderLogin.js"></script>
-  </body>
+</body>
+
 </html>
