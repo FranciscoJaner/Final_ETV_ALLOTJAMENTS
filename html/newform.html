@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form>
+    <form id="login-form">
         <div class="text-center col-sm-12" id="head-form">
             <h4>Login 4 API</h4>
         </div>
@@ -19,22 +19,18 @@
         <div class="form-group">
             <label for="email">Correo electrónico</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                placeholder="Introduce tu email" />
-            <small id="emailHelp" class="form-text text-muted">Logeate para poder acceder al contenido de la
-                api.</small>
+                placeholder="Introduce tu email" title="Escribe un correo válido"/>
         </div>
 
         <div class="form-group">
             <label for="passwd">Contraseña</label>
-            <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña" />
+            <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña" pattern="[a-zA-Z0-9]{4}*" title="La contraseña tiene que tener al menos 6 caracteres">
         </div>
 
         <button type="submit" class="btn btn-primary" id="button-login">
             Logearse
         </button>
     </form>
-
     <script src="../js/renderLogin.js"></script>
 </body>
-
 </html>

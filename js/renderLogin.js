@@ -1,19 +1,17 @@
 const { ipcRenderer } = require("electron");
 
 //POINTERS
-const correo = document.getElementById("email").value;
-const passwd = document.getElementById("passwd").value;
-let button = document.getElementById("button-login");
+let correo = document.getElementById("email").value;
+let passwd = document.getElementById("passwd").value;
+let form = document.getElementById("login-form");
 //events
 
-button.addEventListener("click", function () {
-  if (correo.length() < 1 || !passwd.length() < 1) {
-    alert("Por favor complete todos los campos.asdasd");
-    return;
-  } else {
+form.addEventListener("submit", function () {
     // Enviar datos al ipcmain
+    console.log(correo)
+    console.log(passwd)
+
     ipcRenderer.send("login-data", correo, passwd);
-  }
 });
 
 ipcRenderer.on("login-finished", function (e) {

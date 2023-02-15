@@ -43,7 +43,8 @@ app.on("activate", () => {
 
 function chargeToken(tokens) {
   tokenKey = JSON.parse(tokens);
-  tokenKey = tokenKey.result.TOKEN;
+  console.log(tokenKey)
+  tokenKey = tokenKey.data.token;
   console.log(tokenKey);
 }
 
@@ -52,125 +53,129 @@ function getDadesMapa(dades) {
   longitud = dadesmapa.result.LONGITUD;
   latitud = dadesmapa.result.LATIUD;
   console.log("main, longitud, latitud: " + latitud + ", " + longitud);
-
-  //renderers
-  ipcMain.on("login-data", (e, email, password) => {
-    //ahora tenemos que enviar la petición
-    const request = net.request({
-      method: "POST",
-      hostname: hostname,
-      protocol: protocol,
-      path: "etvServidor/public/api/login",
-    });
-
-    let body;
-
-    let postData = JSON.stringify({
-      CORREU_ELECTRONIC: `${email}`,
-      CONTRASENYA: `${password}`,
-    });
-
-    request.on("response", (response) => {
-      response.on("data", (chunk) => {
-        body = `${chunk}`;
-        chargeToken(body);
-      });
-    });
-    request.on("finish", () => {
-      console.log("Request is Finished");
-    });
-    request.on("abort", () => {
-      console.log("Request is Aborted");
-    });
-    request.on("error", (error) => {
-      console.log(`ERROR: ${JSON.stringify(error)}`);
-    });
-    request.on("close", (error) => {
-      console.log("Last Transaction has occurred");
-    });
-    request.setHeader("Content-Type", "application/json");
-    request.write(postData, "utf-8");
-    request.end();
-
-    //e.sender.send('login-finished');
-  });
-
-  ipcMain.on("load-content", function (e) {
-    const request = net.request({
-      //mirar si los datos son iguales
-      method: "GET",
-      hostname: hostname,
-      protocol: protocol,
-      path: "/etvServidor/public/api/login",
-      headers: {
-        Authorization: `Bearer ${tokenKey}`,
-      },
-    });
-
-    let body;
-
-    request.on("response", (response) => {
-      console.log(`STATUS: ${response.statusCode}`);
-      console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-
-      response.on("data", (chunk) => {
-        e.sender.send("canal1", chunk);
-      });
-    });
-    request.on("finish", () => {
-      console.log("Request is Finished");
-    });
-    request.on("abort", () => {
-      console.log("Request is Aborted");
-    });
-    request.on("error", (error) => {
-      console.log(`ERROR: ${JSON.stringify(error)}`);
-    });
-    request.on("close", (error) => {
-      console.log("Last Transaction has occurred");
-    });
-    request.end();
-    e.sender.send("login-finished");
-  });
-
-  // main para allotjaments
-  ipcMain.on("load-content", function (e) {
-    const request = net.request({
-      //mirar si los datos son iguales
-      method: "GET",
-      hostname: hostname,
-      protocol: protocol,
-      path: "/etvServidor/public/api/allotjaments",
-      headers: {
-        Authorization: `Bearer ${tokenKey}`,
-      },
-    });
-
-    let body;
-
-    request.on("response", (response) => {
-      console.log(`STATUS: ${response.statusCode}`);
-      console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-
-      response.on("data", (chunk) => {
-        e.sender.send("canal_allotjament", chunk);
-        body = `${chunk}`;
-        getDadesMapa(body); // envia les dades al body per rebre latitud y longitud
-      });
-    });
-    request.on("finish", () => {
-      console.log("Request is Finished");
-    });
-    request.on("abort", () => {
-      console.log("Request is Aborted");
-    });
-    request.on("error", (error) => {
-      console.log(`ERROR: ${JSON.stringify(error)}`);
-    });
-    request.on("close", (error) => {
-      console.log("Last Transaction has occurred");
-    });
-    request.end();
-    e.sender.send("login-finished");
-  });
 }
+
+//renderers
+ipcMain.on("login-data", function (e, email, password){
+  //ahora tenemos que enviar la petición
+  const request = net.request({
+    method: "POST",
+    hostname: hostname,
+    protocol: protocol,
+    path: "etvServidor/public/api/login",
+  });
+
+  let body;
+
+  let postData = JSON.stringify({
+    email: `${email}`,
+    password: `${password}`,
+  });
+
+  console.log("POSTTT DATAAA")
+  console.log(postData)
+
+  request.on("response", (response) => {
+    response.on("data", (chunk) => {
+      body = `${chunk}`;
+      console.log(body)
+      chargeToken(body);
+    });
+  });
+  request.on("finish", () => {
+    console.log("Request is Finished");
+  });
+  request.on("abort", () => {
+    console.log("Request is Aborted");
+  });
+  request.on("error", (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`);
+  });
+  request.on("close", (error) => {
+    console.log("Last Transaction has occurred");
+  });
+  request.setHeader("Content-Type", "application/json");
+  request.write(postData, "utf-8");
+  request.end();
+
+  //e.sender.send('login-finished');
+});
+
+ipcMain.on("load-content", function (e) {
+  const request = net.request({
+    //mirar si los datos son iguales
+    method: "GET",
+    hostname: hostname,
+    protocol: protocol,
+    path: "/etvServidor/public/api/login",
+    headers: {
+      Authorization: `Bearer ${tokenKey}`,
+    },
+  });
+
+  let body;
+
+  request.on("response", (response) => {
+    console.log(`STATUS: ${response.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
+
+    response.on("data", (chunk) => {
+      e.sender.send("canal1", chunk);
+    });
+  });
+  request.on("finish", () => {
+    console.log("Request is Finished");
+  });
+  request.on("abort", () => {
+    console.log("Request is Aborted");
+  });
+  request.on("error", (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`);
+  });
+  request.on("close", (error) => {
+    console.log("Last Transaction has occurred");
+  });
+  request.end();
+  e.sender.send("login-finished");
+});
+
+// main para allotjaments
+ipcMain.on("load-content", function (e) {
+  const request = net.request({
+    //mirar si los datos son iguales
+    method: "GET",
+    hostname: hostname,
+    protocol: protocol,
+    path: "/etvServidor/public/api/allotjaments",
+    headers: {
+      Authorization: `Bearer ${tokenKey}`,
+    },
+  });
+
+  let body;
+
+  request.on("response", (response) => {
+    console.log(`STATUS: ${response.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
+
+    response.on("data", (chunk) => {
+      e.sender.send("canal_allotjament", chunk);
+      body = `${chunk}`;
+      getDadesMapa(body); // envia les dades al body per rebre latitud y longitud
+    });
+  });
+  request.on("finish", () => {
+    console.log("Request is Finished");
+  });
+  request.on("abort", () => {
+    console.log("Request is Aborted");
+  });
+  request.on("error", (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`);
+  });
+  request.on("close", (error) => {
+    console.log("Last Transaction has occurred");
+  });
+  request.end();
+  e.sender.send("login-finished");
+});
