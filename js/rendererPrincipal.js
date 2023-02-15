@@ -1,20 +1,24 @@
 const { ipcRenderer } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
+let divPrincipalInject = $("#bodycasas")
 let div1 = $("#div-nom");
 let div2 = $("#div-imagen");
 let div3 = $("#div-descripcio");
 
+//enviamos apenas abrimos la app un mensaje para cargar el contenido
 ipcRenderer.send("load-content");
 
-ipcRenderer.on("canal1", (e, info) => {
-  let data = info.data.id;
-  console.log(data);
-  let name = $(`<p>${dades.data[2].nom}</p>`);
-  let fax = $(`<p>${dades.data[1].id}</p>`);
-  let descripcio = $(`<p>${dades.data[3].descripcio}</p>`);
+ipcRenderer.on("api-fotos", (e, info) => {
+  let fotoObject = JSON.parse(info);
+  fotoObject = fotoObject.data
+  console.log(fotoObject);
+
+  let name = $(`<p>${fotoObject.url}</p>`);
+  let fax = $(`<p>${fotoObject.comentari}</p>`);
 
   div1.append(name);
   div2.append(fax);
-  div3.append(descripcio);
+
+  divPrincipalInject.append(div1,div2)
 });
