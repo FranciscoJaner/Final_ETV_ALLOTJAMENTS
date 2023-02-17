@@ -1,20 +1,28 @@
-const { ipcRenderer } = require("electron");
-let $ = ({ jQuery } = require("jquery"));
+const { ipcRenderer } = require("electron")
+let $ = ({ jQuery } = require("jquery"))
 
-let div1 = $("#div-nom");
-let div2 = $("#div-imagen");
-let div3 = $("#div-descripcio");
+//punteros
+let divPrincipalInject = $('#body-casas');
 
+//enviamos apenas abrimos la app un mensaje para cargar el contenido
 ipcRenderer.send("load-content");
 
-ipcRenderer.on("canal1", (e, info) => {
-  let data = info.data.id;
-  console.log(data);
-  let name = $(`<p>${dades.data[2].nom}</p>`);
-  let fax = $(`<p>${dades.data[1].id}</p>`);
-  let descripcio = $(`<p>${dades.data[3].descripcio}</p>`);
+//recebimos el contenido de la api
+ipcRenderer.on("enviar-casas", function(e, info) {
+  //conversión del JSON a objecto
+  let fotoObject = JSON.parse(info);
+  fotoObject = fotoObject.data;
 
-  div1.append(name);
-  div2.append(fax);
-  div3.append(descripcio);
+  //creación de los div
+  fotoObject.forEach((_element) => {
+    let divPrincipal = $(`<div class="col-4 formato-cards"></div>`);
+
+    let imagen = $(`<img src="${_element.url}"/>`);
+    let name = $(`<p>${_element.allotjament.nom}</p>`);
+    let descripcion = $(`<p>${_element.allotjament.descripcio}</p>`);
+
+    divPrincipal.append(imagen,name,descripcion);
+    console.log(divPrincipal)
+    divPrincipalInject.append(divPrincipal)
+  })
 });

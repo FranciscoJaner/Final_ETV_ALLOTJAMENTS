@@ -32,9 +32,24 @@ form{
 /* MAIN PAGE */
 
 #head-image{
-    height: 300px;
+    height: 40vh;
     background-image: url("../assets/img/image-background-indez.jpg");
-    background-repeat: no-repeat;
     background-position: center;
-    object-fit: cover;
+    background-repeat: no-repeat;
+
+}
+#map {
+    height: 500px;
+    width: 1000px;
+}
+
+.formato-cards{
+    background-color: ghostwhite;
+    padding: 20px;
+    border: solid 1px;
+}
+
+#bodyH1 > div > h3{
+    text-align: center;
+    font-size: 25px;
 }

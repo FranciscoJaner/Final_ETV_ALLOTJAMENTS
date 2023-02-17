@@ -2,8 +2,8 @@ const { ipcRenderer } = require("electron");
 
 //POINTERS
 let form = document.getElementById("login-form");
-//events
 
+//events
 form.addEventListener("submit", function () {
   // Enviar datos al ipcmain
   let correo = document.getElementById("email").value;

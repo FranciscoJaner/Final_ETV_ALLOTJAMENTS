@@ -96,29 +96,22 @@ ipcMain.on("login-data", function (e, email, password) {
   //e.sender.send('login-finished');
 });
 
-// main para allotjaments
-ipcMain.on("load-content", function (e) {
+ipcMain.on("load-content", function (event) {
+
   const request = net.request({
-    //mirar si los datos son iguales
     method: "GET",
     hostname: hostname,
     protocol: protocol,
-    path: "/etvServidor/public/api/allotjaments",
-    headers: {
-      Authorization: `Bearer ${tokenKey}`,
-    },
+    path: "etvServidor/public/api/fotos",
   });
 
   let body;
 
   request.on("response", (response) => {
-    console.log(`STATUS: ${response.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-
     response.on("data", (chunk) => {
-      e.sender.send("canal_allotjament", chunk);
       body = `${chunk}`;
-      getDadesMapa(body); // envia les dades al body per rebre latitud y longitud
+      //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      event.sender.send("enviar-casas", body);
     });
   });
   request.on("finish", () => {
@@ -134,5 +127,5 @@ ipcMain.on("load-content", function (e) {
     console.log("Last Transaction has occurred");
   });
   request.end();
-  e.sender.send("login-finished");
+
 });
