@@ -32,24 +32,10 @@ const initial_menu = [
     },
   },
   {
-    label: "ADMINISTRATION",
-    click: async () => {
-      const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/loginform.html");
-    },
-  },
-  {
-    label: "MAP",
-    click: async () => {
-      const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/map.html");
-    },
-  },
-  {
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/newform.html");
+      mainWindow.loadFile("./HTML/loginform.html");
     },
   },
 ];
@@ -99,14 +85,14 @@ const loged_menu = [
     label: "DASHBOARD",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("");
+      mainWindow.loadFile("../html/dashboard.html");
     },
   },
   {
     label: "MAP",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("");
+      mainWindow.loadFile("../html/map.html");
     },
   },
   {
