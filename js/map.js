@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 var map = L.map("map").setView([34.505, 3.09], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -31,6 +33,8 @@ function onMapClick(e) {
 }
 
 map.on("click", onMapClick);
+
+ipcRenderer.send("load-content");
 
 ipcRenderer.on("canalmapa", (e, latitud, longitud) => {
   console.log("longitud: " + longitud + " latitud: " + latitud);

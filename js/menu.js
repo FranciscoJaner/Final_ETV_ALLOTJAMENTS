@@ -32,10 +32,17 @@ const template = [
     },
   },
   {
-    label: "LOGIN",
+    label: "ADMINISTRATION",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/newform.html");
+      mainWindow.loadFile("./administration.html");
+    },
+  },
+  {
+    label: "DASHBOARDS",
+    click: async () => {
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./dashboard.html");
     },
   },
   {
@@ -43,6 +50,13 @@ const template = [
     click: async () => {
       const { mainWindow } = require("../main.js");
       mainWindow.loadFile("./HTML/map.html");
+    },
+  },
+  {
+    label: "LOGIN",
+    click: async () => {
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./HTML/newform.html");
     },
   },
 ];
