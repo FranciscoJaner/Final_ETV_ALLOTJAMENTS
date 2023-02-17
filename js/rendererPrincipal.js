@@ -15,9 +15,9 @@ ipcRenderer.on("enviar-casas", function(e, info) {
 
   //creación de los div
   fotoObject.forEach((_element) => {
-    let divPrincipal = $(`<div class="col-sm-4"></div>`);
+    let divPrincipal = $(`<div class="col-4 formato-cards"></div>`);
 
-    let imagen = $(`<p>${_element.url}</p>`);
+    let imagen = $(`<img src="${_element.url}"/>`);
     let name = $(`<p>${_element.allotjament.nom}</p>`);
     let descripcion = $(`<p>${_element.allotjament.descripcio}</p>`);
 
