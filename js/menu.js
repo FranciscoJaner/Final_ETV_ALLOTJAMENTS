@@ -99,7 +99,7 @@ const loged_menu = [
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./HTML/loginform.html");
+      mainWindow.loadFile("./html/loginform.html");
     },
   },
 ];
