@@ -9,6 +9,17 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 var marker = L.marker([60.354614, -0.995893]).addTo(map); // cambiar latitud y longitud por resultado de la api
+var marker2;
+
+getCoord();
+function getCoord() {
+  var longitud = [60.1436, 60.14, 60.1456];
+  var latitud = [-0.99, -0.9912, -0.9916];
+  for (var i = 0; i < longitud.length; i++) {
+    console.log(longitud[i] + latitud[i]);
+    marker2 = L.marker([longitud[i], latitud[i]]).addTo(map);
+  }
+}
 
 marker.bindPopup("<b>Location Allotjament</b>.").openPopup();
 
