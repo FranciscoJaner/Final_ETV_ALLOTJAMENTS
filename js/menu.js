@@ -38,6 +38,13 @@ const template = [
       mainWindow.loadFile("./HTML/newform.html");
     },
   },
+  {
+    label: "MAP",
+    click: async () => {
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./HTML/map.html");
+    },
+  },
 ];
 
 module.exports.menu = Menu.buildFromTemplate(template);
