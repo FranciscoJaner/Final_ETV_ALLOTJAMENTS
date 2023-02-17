@@ -1,5 +1,3 @@
-const { ipcRenderer } = require("electron");
-
 var map = L.map("map").setView([34.505, 3.09], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

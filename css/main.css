@@ -38,3 +38,7 @@ form{
     background-position: center;
     object-fit: cover;
 }
+#map {
+    height: 500px;
+    width: 1000px;
+}
