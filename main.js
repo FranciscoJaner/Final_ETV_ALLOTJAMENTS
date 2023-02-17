@@ -1,16 +1,18 @@
 //requires
 const { app, BrowserWindow, Menu, ipcMain } = require("electron");
-const { menu } = require("./js/menu.js");
+const { menu, menu2 } = require("./js/menu.js");
 const { net } = require("electron");
 
 //variable globals
 let mainWindow;
-let tokenKey;
+let userToken;
+let userId;
 let dadesmapa;
 let latitud;
 let longitud;
 let hostname = "etv.dawpaucasesnoves.com";
 let protocol = "http:";
+let x = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -43,8 +45,11 @@ app.on("activate", () => {
 
 function chargeToken(tokens) {
   tokenKey = JSON.parse(tokens);
-  tokenKey = tokenKey.data.token;
-  console.log(tokenKey);
+  userId = tokenKey.data.usuari.id;
+  userToken = tokenKey.data.token;
+
+  console.log(userId);
+  console.log(userToken);
 }
 
 function getDadesMapa(dades) {
@@ -75,6 +80,11 @@ ipcMain.on("login-data", function (e, email, password) {
     response.on("data", (chunk) => {
       body = `${chunk}`;
       chargeToken(body);
+
+      if (response.statusMessage == "OK") {
+        Menu.setApplicationMenu(menu2);
+        mainWindow.loadFile("./index.html");
+      }
     });
   });
   request.on("finish", () => {
@@ -92,12 +102,9 @@ ipcMain.on("login-data", function (e, email, password) {
   request.setHeader("Content-Type", "application/json");
   request.write(postData, "utf-8");
   request.end();
-
-  //e.sender.send('login-finished');
 });
 
 ipcMain.on("load-content", function (event) {
-
   const request = net.request({
     method: "GET",
     hostname: hostname,
@@ -127,5 +134,36 @@ ipcMain.on("load-content", function (event) {
     console.log("Last Transaction has occurred");
   });
   request.end();
+});
 
+ipcMain.on("insert_house", function (e, email, password) {
+  //ahora tenemos que enviar la petición
+  const request = net.request({
+    method: "POST",
+    hostname: hostname,
+    protocol: protocol,
+    path: "etvServidor/public/api/allotjaments",
+    Authorization: Bearer`${userToken}`,
+  });
+
+  let body;
+
+  request.on("response", (response) => {
+    response.on("data", (chunk) => {});
+  });
+  request.on("finish", () => {
+    console.log("Request is Finished");
+  });
+  request.on("abort", () => {
+    console.log("Request is Aborted");
+  });
+  request.on("error", (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`);
+  });
+  request.on("close", (error) => {
+    console.log("Last Transaction has occurred");
+  });
+  request.setHeader("Content-Type", "application/json");
+  request.write(postData, "utf-8");
+  request.end();
 });
