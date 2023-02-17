@@ -104,8 +104,12 @@ ipcMain.on("login-data", function (e, email, password) {
   request.end();
 });
 
+<<<<<<< HEAD
 ipcMain.on("load-content", function (e) {
   console.log("Esoy en el main papi");
+=======
+ipcMain.on("load-content", function (event) {
+>>>>>>> 0ef87866415ce7e084b0c57af5f29951809d429b
 
   const request = net.request({
     method: "GET",
@@ -117,12 +121,10 @@ ipcMain.on("load-content", function (e) {
   let body;
 
   request.on("response", (response) => {
-    console.log(`STATUS: ${response.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-
     response.on("data", (chunk) => {
       body = `${chunk}`;
-      e.sender.send("api-fotos", body);
+      //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      event.sender.send("enviar-casas", body);
     });
   });
   request.on("finish", () => {
@@ -138,6 +140,7 @@ ipcMain.on("load-content", function (e) {
     console.log("Last Transaction has occurred");
   });
   request.end();
+
 });
 
 ipcMain.on("insert_house", function (e, email, password) {

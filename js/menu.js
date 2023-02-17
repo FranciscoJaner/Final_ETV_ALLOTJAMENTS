@@ -38,6 +38,13 @@ const initial_menu = [
       mainWindow.loadFile("./HTML/loginform.html");
     },
   },
+  {
+    label: "MAP",
+    click: async () => {
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./HTML/map.html");
+    },
+  },
 ];
 
 const loged_menu = [
