@@ -76,7 +76,7 @@ const loged_menu = [
         label: "NEW HOUSE",
         click: async () => {
           const { mainWindow } = require("../main.js");
-          mainWindow.loadFile("../html/form_newhouse.html");
+          mainWindow.loadFile("./html/form_newhouse.html");
         },
       },
     ],
@@ -85,7 +85,7 @@ const loged_menu = [
     label: "DASHBOARD",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("../html/dashboard.html");
+      mainWindow.loadFile("./html/dashboard.html");
     },
   },
   {

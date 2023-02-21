@@ -1,5 +1,25 @@
-.container {
-  background-color: gray;
-  margin-top: auto;
-  width: 820px;
+body {
+  background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/quay-tower-1585643071.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#newHouseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#newHouseForm {
+  border-radius: 20px;
+  background-color: rgba(79, 79, 79, 0.813);
+  padding: 20px;
+}
+
+label,
+input {
+  color: white;
+  display: block;
+  margin-bottom: 10px;
 }

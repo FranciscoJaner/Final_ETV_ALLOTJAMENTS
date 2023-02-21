@@ -1,5 +1,5 @@
 //requires
-const { app, BrowserWindow, Menu, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require("electron");
 const { menu, menu2 } = require("./js/menu.js");
 const { net } = require("electron");
 
@@ -33,6 +33,13 @@ function createWindow() {
 }
 app.on("ready", () => {
   createWindow();
+  setTimeout(function () {
+    dialog.showMessageBox({
+      type: "info",
+      message:
+        "Remember, if u want to see all the functionalities, please log in",
+    });
+  }, 5000);
 });
 
 app.on("window-all-closed", () => {
