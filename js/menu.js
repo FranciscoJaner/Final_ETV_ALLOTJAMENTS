@@ -92,7 +92,7 @@ const loged_menu = [
     label: "MAP",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("../html/map.html");
+      mainWindow.loadFile("./html/map.html");
     },
   },
   {
