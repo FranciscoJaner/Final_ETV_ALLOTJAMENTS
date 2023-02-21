@@ -37,11 +37,23 @@ form{
 
 /* MAIN PAGE */
 
+#letrasInicio{
+    color: white;
+    font-size: 28px;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+}
+
 #head-image{
     height: 40vh;
-    background-image: url("../assets/img/imagen-background.jpg");
+    background-image: url("../assets/img/foto-background-interior.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 #map {
