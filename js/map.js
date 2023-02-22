@@ -1,4 +1,5 @@
 const { ipcRenderer } = require("electron");
+let $ = ({ jQuery } = require("jquery"));
 
 var map = L.map("map").setView([39.586006, 2.9], 10);
 
@@ -19,7 +20,11 @@ function onMapClick(e) {
     .openOn(map);
 }
 
-map.on("click", onMapClick);
+function onMarkerClick(e) {
+  popup.setContent("Casa de").openOn(map);
+}
+
+//map.on("click", onMapClick);
 
 ipcRenderer.send("load-content");
 
@@ -30,7 +35,11 @@ ipcRenderer.on("enviar-casas", function (e, info) {
     marker = L.marker([
       _element.allotjament.latitud,
       _element.allotjament.longitud,
-    ]).addTo(map);
+    ])
+      .addTo(map)
+      .bindPopup(
+        `<div class="bocadillo"><b>${_element.allotjament.nom}</b></br><img src="${_element.url}"></div>`
+      );
     console.log(
       _element.allotjament.latitud + " " + _element.allotjament.longitud
     );
