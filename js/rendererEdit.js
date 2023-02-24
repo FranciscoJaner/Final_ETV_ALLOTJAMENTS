@@ -35,11 +35,11 @@ ipcRenderer.on("enviar-edit", function (e, info) {
 
 function modificarCasa(id) {
   console.log("Modificando Casa, id: " + id);
-  // levar a la pantalla de modificar
-  ipcRenderer.send("edit_house", id);
+  // llevar a la pantalla de modificar
+  //ipcRenderer.send("edit_house", id);
 }
 
 function borrarCasa(id) {
   console.log("Borrando casa, id: " + id);
-  ipcRenderer.send("borrar_house", id);
+  ipcRenderer.send("delete_house", id);
 }
