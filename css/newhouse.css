@@ -11,10 +11,25 @@ body {
   height: 100vh;
 }
 
-#newHouseForm {
+#newhouseForm {
   border-radius: 20px;
   background-color: rgba(79, 79, 79, 0.813);
   padding: 20px;
+}
+
+#newText {
+  justify-content: center;
+  text-align: center;
+}
+
+#create-button {
+  margin-top: 10px;
+}
+
+h1 {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 label,

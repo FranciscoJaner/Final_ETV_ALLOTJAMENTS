@@ -66,7 +66,9 @@ function getDadesMapa(dades) {
   console.log("main, longitud, latitud: " + latitud + ", " + longitud);
 }
 
-//renderers
+//MAINS
+
+// Main para el login.
 ipcMain.on("login-data", function (e, email, password) {
   //ahora tenemos que enviar la petición
   const request = net.request({
@@ -111,6 +113,7 @@ ipcMain.on("login-data", function (e, email, password) {
   request.end();
 });
 
+//Main para cargar los datos de las casas de la pagina principal.
 ipcMain.on("load-content", function (event) {
   const request = net.request({
     method: "GET",
@@ -144,20 +147,26 @@ ipcMain.on("load-content", function (event) {
   request.end();
 });
 
-ipcMain.on("insert_house", function (e, email, password) {
-  //ahora tenemos que enviar la petición
+//Main para insertar una casa
+ipcMain.on("insert-house", function (e, info) {
   const request = net.request({
     method: "POST",
     hostname: hostname,
     protocol: protocol,
     path: "etvServidor/public/api/allotjaments",
-    Authorization: Bearer`${userToken}`,
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
   });
 
-  let body;
+  let postData = JSON.stringify(info);
+
+  request.setHeader("Authorization", "Bearer " + userToken);
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {});
+    console.log(response.statusMessage);
   });
   request.on("finish", () => {
     console.log("Request is Finished");
@@ -171,7 +180,7 @@ ipcMain.on("insert_house", function (e, email, password) {
   request.on("close", (error) => {
     console.log("Last Transaction has occurred");
   });
-  request.setHeader("Content-Type", "application/json");
+
   request.write(postData, "utf-8");
   request.end();
 });
