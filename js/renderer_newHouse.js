@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 let form = document.getElementById("newhouseForm");
 
 form.addEventListener("submit", function () {
-  // Enviar datos al ipcmain
+  // Recogemos todos los valores de los elementos y los introducimos en una variable.
   let name = document.getElementById("nameInput").value;
   let rnumber = document.getElementById("registInput").value;
   let people = document.getElementById("peopleInput").value;
@@ -17,8 +17,8 @@ form.addEventListener("submit", function () {
   let description = document.getElementById("description").value;
   let bath = document.getElementById("bethInput").value;
   let pisporta = document.getElementById("pisInput").value;
-  let all = document.getElementById("allInput").value;
-  let type = document.getElementById("typInput").value;
+  let accommodationtype = document.getElementById("allInput").value;
+  let vacationtype = document.getElementById("typInput").value;
   let longitude = document.getElementById("longInput").value;
   let latitude = document.getElementById("latInput").value;
 
@@ -34,14 +34,15 @@ form.addEventListener("submit", function () {
     numero: number,
     pisporta: pisporta,
     municipi_id: municipality,
-    tipus_allotjament_id: all,
-    tipus_vacances_id: type,
+    tipus_allotjament_id: accommodationtype,
+    tipus_vacances_id: vacationtype,
     propietari_id: owner,
     categoria_id: category,
     longitud: longitude,
     latitud: latitude,
   };
 
+  // Enviamos al main todos los datos.
   ipcRenderer.send("insert-house", newHouse);
 });
 

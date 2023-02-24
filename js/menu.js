@@ -66,7 +66,7 @@ const loged_menu = [
     label: "HOME",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./index.html");
+      mainWindow.loadFile("./html/edit_house.html");
     },
   },
   {
@@ -96,17 +96,10 @@ const loged_menu = [
     },
   },
   {
-    label: "EDIT",
+    label: "LOG OUT",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./html/edit_house.html");
-    },
-  },
-  {
-    label: "LOGIN",
-    click: async () => {
-      const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./html/loginform.html");
+      mainWindow.loadFile("./html/.html");
     },
   },
 ];
