@@ -37,7 +37,7 @@ form{
 
 /* MAIN PAGE */
 
-#letrasInicio{
+.letrasInicio{
     color: white;
     font-size: 28px;
     font-weight: bolder;
@@ -46,7 +46,7 @@ form{
     text-align: center;
 }
 
-#head-image{
+.head-image{
     height: 40vh;
     background-image: url("../assets/img/foto-background-interior.jpg");
     background-position: center;
@@ -95,3 +95,15 @@ form{
 .formato-cards > p:nth-of-type(2){
     text-align: justify;
 }
+/* DASHBOARD */
+
+#dashboardTitle{
+    text-align: center;
+    margin-top: 30px;
+}
+
+#graphic-1{
+    padding: 10px;
+    margin: 5px;
+}
+

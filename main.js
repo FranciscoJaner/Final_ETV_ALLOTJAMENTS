@@ -25,7 +25,7 @@ function createWindow() {
       nodeIntegration: true,
     },
   });
-
+  mainWindow.newTimer = true;
   Menu.setApplicationMenu(menu);
   mainWindow.loadFile("index.html");
   module.exports.mainWindow = mainWindow;
@@ -33,7 +33,9 @@ function createWindow() {
 }
 app.on("ready", () => {
   createWindow();
+
   setTimeout(function () {
+    if (mainWindow.newTimer)
     dialog.showMessageBox({
       type: "info",
       message:
@@ -111,7 +113,7 @@ ipcMain.on("login-data", function (e, email, password) {
   request.end();
 });
 
-ipcMain.on("load-content", function (event) {
+ipcMain.on("load-content", function (event,tipo) {
   const request = net.request({
     method: "GET",
     hostname: hostname,
@@ -126,6 +128,38 @@ ipcMain.on("load-content", function (event) {
       body = `${chunk}`;
       //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
       event.sender.send("enviar-casas", body);
+    });
+  });
+  request.on("finish", () => {
+    console.log("Request is Finished");
+  });
+  request.on("abort", () => {
+    console.log("Request is Aborted");
+  });
+  request.on("error", (error) => {
+    console.log(`ERROR: ${JSON.stringify(error)}`);
+  });
+  request.on("close", (error) => {
+    console.log("Last Transaction has occurred");
+  });
+  request.end();
+});
+
+ipcMain.on("load-content-dashboard", function (event,tipo) {
+  const request = net.request({
+    method: "GET",
+    hostname: hostname,
+    protocol: protocol,
+    path: "etvServidor/public/api/allotjaments",
+  });
+
+  let body;
+
+  request.on("response", (response) => {
+    response.on("data", (chunk) => {
+      body = `${chunk}`;
+      //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      event.sender.send("enviar-info-casas",body)
     });
   });
   request.on("finish", () => {
@@ -174,3 +208,7 @@ ipcMain.on("insert_house", function (e, email, password) {
   request.write(postData, "utf-8");
   request.end();
 });
+
+ipcMain.on("startGraphs", function (e) {
+
+})

@@ -35,7 +35,9 @@ const initial_menu = [
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
+      mainWindow.newTimer = false;//mirar si esto funciona
       mainWindow.loadFile("./HTML/loginform.html");
+
     },
   },
 ];
