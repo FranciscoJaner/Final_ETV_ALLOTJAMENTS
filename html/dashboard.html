@@ -6,11 +6,42 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/main.css"/>
     <title>Dashboard</title>
 </head>
 
 <body>
-
+    <div class="head-image">
+        <div class="col-sm-12 letrasInicio">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" id="dashboardTitle">
+                <h1>Dashboard: Pantalla de visualización de datos</h1>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-6 align-graphs size-graph">
+                <canvas id="graphic-1"></canvas>
+            </div>
+            <div class="col-sm-6 align-graphs size-graph">
+                <canvas id="graphic-2"></canvas>
+            </div>
+        </div>
+        <hr/>
+        <div class="row" id="centrar-graphs">
+            <div class="col-sm-6 align-graphs size-graph" id="size-graph3">
+                <canvas id="graphic-3"></canvas>
+            </div>
+            <div class="col-sm-6 align-graphs size-graph">
+                <canvas id="graphic-4"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="../js/renderGraphics.js"></script>
 </body>
 
 </html>
