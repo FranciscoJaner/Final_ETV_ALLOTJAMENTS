@@ -14,19 +14,37 @@ form.addEventListener("submit", function () {
   let municipality = document.getElementById("munInput").value;
   let category = document.getElementById("cateInput").value;
   let owner = document.getElementById("ownerInput").value;
+  let description = document.getElementById("description").value;
+  let bath = document.getElementById("bethInput").value;
+  let pisporta = document.getElementById("pisInput").value;
+  let all = document.getElementById("allInput").value;
+  let type = document.getElementById("typInput").value;
+  let longitude = document.getElementById("longInput").value;
+  let latitude = document.getElementById("latInput").value;
 
   let newHouse = {
     nom: name,
-    rnumero: rnumber,
-    persones: people,
-    banys: toilet,
-    llits: beds,
+    descripcio: description,
+    nregistre: rnumber,
+    npersones: people,
+    nbanys: toilet,
+    nllits: beds,
+    nhabitacions: bath,
     carrer: street,
     numero: number,
-    municipi: municipality,
-    categoria: category,
-    propietari: owner,
+    pisporta: pisporta,
+    municipi_id: municipality,
+    tipus_allotjament_id: all,
+    tipus_vacances_id: type,
+    propietari_id: owner,
+    categoria_id: category,
+    longitud: longitude,
+    latitud: latitude,
   };
 
   ipcRenderer.send("insert-house", newHouse);
+});
+
+ipcRenderer.on("insert-finished", function (e) {
+  e.sender.send("insert-house");
 });

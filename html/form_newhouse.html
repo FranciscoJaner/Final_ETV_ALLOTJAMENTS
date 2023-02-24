@@ -12,7 +12,7 @@
 
 <body>
     <div class="container" id="newHouseContainer">
-        <form action="submit" id="newhouseForm">
+        <form id="newhouseForm">
             <div class="title" id="newText">
                 <h1>Create a new house</h1>
             </div>
@@ -34,9 +34,12 @@
                     <label class="form-label">Toilets</label>
                     <input type="number" id="toiletInput" class="form-control">
                 </div>
-
             </div>
             <div class="from-group row">
+                <div class="col-md-2">
+                    <label class="form-label">BethRooms</label>
+                    <input type="number" id="bethInput" class="form-control">
+                </div>
                 <div class="col-md-2">
                     <label class="form-label">Beds</label>
                     <input type="number" id="bedsInput" class="form-control">
@@ -46,27 +49,56 @@
                     <input type="text" id="strInput" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Number</label>
+                    <label class="form-label">Number
+                    </label>
                     <input type="number" id="numInput" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Municipality
-                    </label>
+                    <label class="form-label">Municipality</label>
                     <input type="number" id="munInput" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Category</label>
-                    <input type="text" id="cateInput" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label">Owner
+                    <label class="form-label">Category
                     </label>
-                    <input type="number" id="ownerInput" class="form-control">
+                    <input type="number" id="cateInput" class="form-control">
+                </div>
+                <div class="from-group row">
+                    <div class="col-md-2">
+                        <label class="form-label">Owner</label>
+                        <input type="number" id="ownerInput" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">pisporta</label>
+                        <input type="number" id="pisInput" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">tipus_allotj</label>
+                        <input type="number" id="allInput" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">tipus_vaca</label>
+                        <input type="number" id="typInput" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">longitude</label>
+                        <input type="text" id="longInput" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">latitude</label>
+                        <input type="text" id="latInput" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="from-group row">
+                <div class="col-md-12">
+                    <label class="form-label">Description</label>
+                    <input type="text" id="description" class="form-control">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" id="create-button">Create</button>
         </form>
     </div>
+    <script src="../js/renderer_newHouse.js"></script>
 </body>
 
 </html>
