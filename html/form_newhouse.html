@@ -12,11 +12,19 @@
 
 <body>
     <div class="container" id="newHouseContainer">
-        <form action="submit" id="newHouseForm">
+        <form action="submit" id="newhouseForm">
+            <div class="title" id="newText">
+                <h1>Create a new house</h1>
+            </div>
             <div class="from-group row">
                 <div class="col-md-6">
                     <label class="form-label">Name</label>
-                    <input type="text" id="name" class="form-control">
+                    <input type="text" id="nameInput" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">R.Number
+                    </label>
+                    <input type="number" id="registInput" class="form-control">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">People</label>
@@ -24,21 +32,18 @@
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">Toilets</label>
-                    <input type="number" id="toiletsInput" class="form-control">
+                    <input type="number" id="toiletInput" class="form-control">
                 </div>
+
+            </div>
+            <div class="from-group row">
                 <div class="col-md-2">
                     <label class="form-label">Beds</label>
                     <input type="number" id="bedsInput" class="form-control">
                 </div>
-            </div>
-            <div class="from-group row">
-                <div class="col-md-2">
-                    <label class="form-label">Bethrooms</label>
-                    <input type="text" id="bthInput" class="form-control">
-                </div>
                 <div class="col-md-2">
                     <label class="form-label">Street</label>
-                    <input type="number" id="stInput" class="form-control">
+                    <input type="text" id="strInput" class="form-control">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">Number</label>
@@ -50,21 +55,16 @@
                     <input type="number" id="munInput" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">type
+                    <label class="form-label">Category</label>
+                    <input type="text" id="cateInput" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Owner
                     </label>
-                    <input type="number" id="typeInput" class="form-control">
+                    <input type="number" id="ownerInput" class="form-control">
                 </div>
             </div>
-            <div class="from-group row">
-                <div class="col-md-12">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-            </div>
-            <div class="row">
-
-            </div>
-            <button type="submit" class="btn btn-primary">Crear</button>
+            <button type="submit" class="btn btn-primary" id="create-button">Create</button>
         </form>
     </div>
 </body>

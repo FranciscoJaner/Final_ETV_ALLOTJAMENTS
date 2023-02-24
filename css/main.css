@@ -1,38 +1,40 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /* LOGIN CSS */
-*{
-    font-family: "Calibri Light";
+* {
+  font-family: "Calibri Light";
 }
 
-
-form{
-    padding: 50px;
-    background-color: #B7435A;
-    border-radius: 5px;
-    margin: 50px;
+form {
+  padding: 50px;
+  background-color: #b7435a;
+  border-radius: 5px;
+  margin: 50px;
 }
-#head-form{
-    color: ghostwhite;
-    font-size: 20px;
-}
-
-.labelsColors{
-    color: ghostwhite;
-    font-size: 17px;
+#head-form {
+  color: ghostwhite;
+  font-size: 20px;
 }
 
-#button-login{
-    background-color: black;
-    color: white;
-    border-bottom-style: none;
-    border-color: white;
+.labelsColors {
+  color: ghostwhite;
+  font-size: 17px;
 }
-#button-login:hover{
-    background-color: white;
-    color: black;
-    border-bottom-style: none;
-    border-color: black;
+
+#button-login {
+  background-color: black;
+  color: white;
+  border-bottom-style: none;
+  border-color: white;
+  margin-top: 10px;
+}
+
+#button-login:hover {
+  background-color: white;
+  color: black;
+  border-bottom-style: none;
+  border-color: black;
+  box-shadow: 10px black;
 }
 
 /* MAIN PAGE */
@@ -57,40 +59,42 @@ form{
 
 }
 #map {
-    height: 500px;
-    width: 1000px;
+  height: 500px;
+  width: 1000px;
 }
 
-#body-casas{
-    margin: 20px;
-    padding: 10px;
+#body-casas {
+  margin: 20px;
+  padding: 10px;
 }
 
-.formato-cards{
-    background-color: #f5e0c1;
-    padding: 30px;
-    border: solid 1px;
-    border-radius: 10px;
-    width: 380px;
-    margin: 40px;
+.formato-cards {
+  background-color: #f5e0c1;
+  padding: 30px;
+  border: solid 1px;
+  border-radius: 10px;
+  width: 380px;
+  margin: 40px;
 }
 
-.formato-cards > img{
-    max-width: 300px;
-    min-width: 300px;
+.formato-cards > img {
+  max-width: 300px;
+  min-width: 300px;
 }
 
-#bodyH1 > div > h3{
-    text-align: center;
-    font-size: 25px;
-    margin-top: 30px;
+#bodyH1 > div > h3 {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 30px;
 }
-.formato-cards > p:first-of-type{
-    text-align: center;
-    font-size: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-
+.formato-cards > p:first-of-type {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.formato-cards > p:nth-of-type(2) {
+  text-align: justify;
 }
 .formato-cards > p:nth-of-type(2){
     text-align: justify;

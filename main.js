@@ -68,7 +68,9 @@ function getDadesMapa(dades) {
   console.log("main, longitud, latitud: " + latitud + ", " + longitud);
 }
 
-//renderers
+//MAINS
+
+// Main para el login.
 ipcMain.on("login-data", function (e, email, password) {
   //ahora tenemos que enviar la petición
   const request = net.request({
@@ -113,7 +115,8 @@ ipcMain.on("login-data", function (e, email, password) {
   request.end();
 });
 
-ipcMain.on("load-content", function (event,tipo) {
+//Main para cargar los datos de las casas de la pagina principal.
+ipcMain.on("load-content", function (event) {
   const request = net.request({
     method: "GET",
     hostname: hostname,
@@ -178,8 +181,8 @@ ipcMain.on("load-content-dashboard", function (event,tipo) {
   request.end();
 });
 
-ipcMain.on("insert_house", function (e, email, password) {
-  //ahora tenemos que enviar la petición
+//Main para insertar una casa
+ipcMain.on("insert-house", function (e, info) {
   const request = net.request({
     method: "POST",
     hostname: hostname,
@@ -188,10 +191,22 @@ ipcMain.on("insert_house", function (e, email, password) {
     Authorization: Bearer`${userToken}`,
   });
 
-  let body;
+  let postData = JSON.stringify({
+    nom: `${info.nom}`,
+    nregistre: `${info.rnumero}`,
+    npersones: `${info.persones}`,
+    nbanys: `${info.banys}`,
+    nllits: `${info.llits}`,
+    carrer: `${info.carrer}`,
+    numero: `${info.numero}`,
+    municipi_id: `${info.municipi}`,
+    categoria_id: `${info.categoria}`,
+    propietari_id: `${info.propietari}`,
+  });
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {});
+    console.log(response.statusMessage);
   });
   request.on("finish", () => {
     console.log("Request is Finished");
