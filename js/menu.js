@@ -96,6 +96,13 @@ const loged_menu = [
     },
   },
   {
+    label: "EDIT",
+    click: async () => {
+      const { mainWindow } = require("../main.js");
+      mainWindow.loadFile("./html/edit_house.html");
+    },
+  },
+  {
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
