@@ -153,21 +153,15 @@ ipcMain.on("insert-house", function (e, info) {
     hostname: hostname,
     protocol: protocol,
     path: "etvServidor/public/api/allotjaments",
-    Authorization: Bearer`${userToken}`,
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
   });
 
-  let postData = JSON.stringify({
-    nom: `${info.nom}`,
-    nregistre: `${info.rnumero}`,
-    npersones: `${info.persones}`,
-    nbanys: `${info.banys}`,
-    nllits: `${info.llits}`,
-    carrer: `${info.carrer}`,
-    numero: `${info.numero}`,
-    municipi_id: `${info.municipi}`,
-    categoria_id: `${info.categoria}`,
-    propietari_id: `${info.propietari}`,
-  });
+  let postData = JSON.stringify(info);
+
+  request.setHeader("Authorization", "Bearer " + userToken);
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {});
@@ -185,7 +179,7 @@ ipcMain.on("insert-house", function (e, info) {
   request.on("close", (error) => {
     console.log("Last Transaction has occurred");
   });
-  request.setHeader("Content-Type", "application/json");
+
   request.write(postData, "utf-8");
   request.end();
 });
