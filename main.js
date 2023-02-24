@@ -94,7 +94,7 @@ ipcMain.on("login-data", function (e, email, password) {
 
       if (response.statusMessage == "OK") {
         Menu.setApplicationMenu(menu2);
-        mainWindow.loadFile("./index.html");
+        mainWindow.loadFile("./html/edit_house.html");
       }
     });
   });
