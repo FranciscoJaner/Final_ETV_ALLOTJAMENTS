@@ -128,6 +128,7 @@ ipcMain.on("load-content", function (event,tipo) {
       body = `${chunk}`;
       //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
       event.sender.send("enviar-casas", body);
+      event.sender.send("enviar-edit", body);
     });
   });
   request.on("finish", () => {
@@ -209,6 +210,67 @@ ipcMain.on("insert_house", function (e, email, password) {
   request.end();
 });
 
-ipcMain.on("startGraphs", function (e) {
+ipcMain.on("edit_house", function (e, args) {
+  const postData = JSON.stringify(args);
 
-})
+  const request = net.request({
+    method: "PUT",
+    hostname: hostname,
+    port: 80,
+    path: `/etvServidor/public/api/allotjaments/${args.id}`,
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Length": postData.length,
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+
+  request.on("response", (response) => {
+    let responseBody = "";
+
+    response.on("data", (chunk) => {
+      responseBody += chunk.toString();
+    });
+
+    response.on("end", () => {
+      console.log(responseBody);
+    });
+  });
+
+  request.on("error", (error) => {
+    console.error(error);
+  });
+
+  request.write(postData);
+  request.end();
+});
+
+ipcMain.on("delete_house", function (e, args) {
+  const request = net.request({
+    method: "DELETE",
+    hostname: "etv.dawpaucasesnoves.com",
+    port: 80,
+    path: `/etvServidor/public/api/allotjaments/${args}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+
+  request.on("response", (response) => {
+    let responseBody = "";
+
+    response.on("data", (chunk) => {
+      responseBody += chunk.toString();
+    });
+
+    response.on("end", () => {
+      console.log(responseBody);
+    });
+  });
+
+  request.on("error", (error) => {
+    console.error(error);
+  });
+
+  request.end();
+});

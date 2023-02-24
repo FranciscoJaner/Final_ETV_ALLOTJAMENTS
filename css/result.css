@@ -2,3 +2,21 @@
   height: 800px;
   width: 800px;
 }
+
+.bocadillo {
+  height: 230px;
+  width: 320px;
+  text-align: center;
+}
+
+img {
+  width: 300px;
+  height: 200px;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 1px;
+  text-align: left;
+  border-radius: 12px;
+  width: 365px;
+}

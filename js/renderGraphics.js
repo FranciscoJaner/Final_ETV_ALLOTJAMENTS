@@ -151,5 +151,3 @@ function graph4 (){
         }
     });
 }
-
-
