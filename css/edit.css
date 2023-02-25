@@ -101,12 +101,14 @@ form {
   background-color: rgb(89, 89, 89);
   border: black;
   color: white;
-  padding: 15px 32px;
+  padding: 10px 25px;
+  border-radius: 8px;
 }
 
 #deleteButton {
   background-color: rgb(243, 12, 12);
+  border-radius: 8px;
   border: black;
   color: white;
-  padding: 15px 32px;
+  padding: 10px 25px;
 }
