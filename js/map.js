@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-let $ = ({ jQuery } = require("jquery"));
+let $ = {jQuery} = require('jquery');
 
 var map = L.map("map").setView([39.586006, 2.9], 10);
 
