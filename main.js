@@ -36,11 +36,11 @@ app.on("ready", () => {
 
   setTimeout(function () {
     if (mainWindow.newTimer)
-    dialog.showMessageBox({
-      type: "info",
-      message:
-        "Remember, if u want to see all the functionalities, please log in",
-    });
+      dialog.showMessageBox({
+        type: "info",
+        message:
+          "Remember, if u want to see all the functionalities, please log in",
+      });
   }, 5000);
 });
 
@@ -149,7 +149,8 @@ ipcMain.on("load-content", function (event) {
   request.end();
 });
 
-ipcMain.on("load-content-dashboard", function (event,tipo) {
+// Main para cargar contenido de las graficas
+ipcMain.on("load-content-dashboard", function (event, tipo) {
   const request = net.request({
     method: "GET",
     hostname: hostname,
@@ -163,7 +164,7 @@ ipcMain.on("load-content-dashboard", function (event,tipo) {
     response.on("data", (chunk) => {
       body = `${chunk}`;
       //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
-      event.sender.send("enviar-info-casas",body)
+      event.sender.send("enviar-info-casas", body);
     });
   });
   request.on("finish", () => {
