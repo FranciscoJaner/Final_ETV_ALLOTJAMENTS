@@ -13,7 +13,7 @@ ipcRenderer.on("enviar-edit", function (e, info) {
   let fotoObject = JSON.parse(info);
   fotoObject = fotoObject.data;
 
-  //creación de los div
+  //creación de los div con los botones de delete y edit
   fotoObject.forEach((_element) => {
     let divPrincipal = $(`<div class="col-sm-4 formato-cards"></div>`);
 
@@ -33,12 +33,14 @@ ipcRenderer.on("enviar-edit", function (e, info) {
   });
 });
 
+// envia id al otro renderer y crea una ventana modal
 function modificarCasa(id) {
   console.log("Modificando Casa, id: " + id);
-  // llevar a la pantalla de modificar
-  //ipcRenderer.send("edit_house", id);
+  ipcRenderer.send("give-id", id);
+  ipcRenderer.send("open-window", "./html/edit_screen.html");
 }
 
+// invia la id al main y borra según esta(no funciona ya que no somos user admin)
 function borrarCasa(id) {
   console.log("Borrando casa, id: " + id);
   ipcRenderer.send("delete_house", id);

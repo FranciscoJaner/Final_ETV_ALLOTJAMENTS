@@ -220,20 +220,20 @@ ipcMain.on("insert-house", function (e, info) {
   request.end();
 });
 
-ipcMain.on("edit_house", function (e, args) {
+ipcMain.on("edit_house", function (e, args, id) {
   const postData = JSON.stringify(args);
 
   const request = net.request({
     method: "PUT",
     hostname: hostname,
-    port: 80,
-    path: `/etvServidor/public/api/allotjaments/${args.id}`,
+    protocol: protocol,
+    path: `/etvServidor/public/api/allotjaments/${id}`,
     headers: {
       "Content-Type": "application/json",
       "Content-Length": postData.length,
-      Authorization: `Bearer ${userToken}`,
     },
   });
+  request.setHeader("Authorization", "Bearer " + userToken);
 
   request.on("response", (response) => {
     let responseBody = "";
@@ -283,4 +283,15 @@ ipcMain.on("delete_house", function (e, args) {
   });
 
   request.end();
+});
+
+ipcMain.on("open-window", (e, htmlFile) => {
+  const newWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  newWindow.loadFile(htmlFile);
 });
