@@ -220,6 +220,7 @@ ipcMain.on("insert-house", function (e, info) {
   request.end();
 });
 
+//Main para editar una casa.
 ipcMain.on("edit_house", function (e, args, id) {
   const postData = JSON.stringify(args);
 
@@ -255,6 +256,7 @@ ipcMain.on("edit_house", function (e, args, id) {
   request.end();
 });
 
+//Main para borrar una casa.
 ipcMain.on("delete_house", function (e, args) {
   const request = net.request({
     method: "DELETE",
