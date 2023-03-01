@@ -32,6 +32,7 @@ app.on("ready", () => {
   createWindow();
 
   setTimeout(function () {
+    //Funcion que cuando se inicie la aplicacion, si estamos 5 segundos sin hacer nada nos mostrara un mensaje para indicar que se tiene que logear.
     if (mainWindow.newTimer)
       dialog.showMessageBox({
         type: "info",
@@ -93,7 +94,7 @@ ipcMain.on("login-data", function (e, email, password) {
 
       if (response.statusMessage == "OK") {
         Menu.setApplicationMenu(menu2);
-        mainWindow.loadFile("./html/edit_house.html");
+        mainWindow.loadFile("./index.html");
       }
     });
   });
@@ -164,6 +165,7 @@ ipcMain.on("load-content-dashboard", function (event, tipo) {
       body = `${chunk}`;
       //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
       event.sender.send("enviar-info-casas", body);
+      event.sender.send("enviar-edit-mod", body, userId);
     });
   });
   request.on("finish", () => {
@@ -189,17 +191,17 @@ ipcMain.on("insert-house", function (e, info) {
     protocol: protocol,
     path: "etvServidor/public/api/allotjaments",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", // Diferentes headers necessarios para la peticion
       accept: "application/json",
     },
   });
 
-  let casa = info;
-  casa.propietari_id = userId;
+  let casa = info; // Recogemos el objeto que nos pasa el renderer.
+  casa.propietari_id = userId; // Le asignamos al atributo propietari, el id del usuario que se ha logeado haciendo asi que el propietario de la casa sea el usuario que se ha logeado.
 
   let postData = JSON.stringify(casa);
 
-  request.setHeader("Authorization", "Bearer " + userToken);
+  request.setHeader("Authorization", "Bearer " + userToken); // Asignamos el token para que nos deje realizar la petición.
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {});
@@ -222,10 +224,8 @@ ipcMain.on("insert-house", function (e, info) {
   request.end();
 });
 
-//Main para editar una casa.
+//Main para editar una casa., en este le asignamos el token con un setHeader.
 ipcMain.on("edit_house", function (e, args, id) {
-  const postData = JSON.stringify(args);
-
   const request = net.request({
     method: "PUT",
     hostname: hostname,
@@ -236,6 +236,9 @@ ipcMain.on("edit_house", function (e, args, id) {
       "Content-Length": postData.length,
     },
   });
+
+  const postData = JSON.stringify(args);
+
   request.setHeader("Authorization", "Bearer " + userToken);
 
   request.on("response", (response) => {
@@ -258,7 +261,7 @@ ipcMain.on("edit_house", function (e, args, id) {
   request.end();
 });
 
-//Main para borrar una casa.
+//Main para borrar una casa, en este caso el usuario tiene que ser administador para permittir esta peticion.
 ipcMain.on("delete_house", function (e, args) {
   const request = net.request({
     method: "DELETE",
@@ -266,7 +269,7 @@ ipcMain.on("delete_house", function (e, args) {
     port: 80,
     path: `/etvServidor/public/api/allotjaments/${args}`,
     headers: {
-      Authorization: `Bearer ${userToken}`,
+      Authorization: `Bearer ${userToken}`, // Asignamos el token, esta vez de diferente manera para ver las diferentes opciones que podemos utilizar.
     },
   });
 

@@ -1,110 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../css/edit_screen.css" />
-    <title>Edit a House</title>
-  </head>
-  <body>
-    <form action="#" method="post" id="edithouseform">
-      <div class="title" id="newText">
-        <h1>Edit a House</h1>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="name">Name:</label>
-          <input type="text" id="nameInput" name="name" required />
-        </div>
-        <div class="col">
-          <label for="r_number">R.Number:</label>
-          <input type="text" id="r_numberInput" name="r_number" required />
-        </div>
-        <div class="col">
-          <label for="people">People:</label>
-          <input type="number" id="peopleInput" name="people" required />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="toilets">Toilets:</label>
-          <input type="number" id="toiletInput" name="toilets" required />
-        </div>
-        <div class="col">
-          <label for="bathrooms">Bathrooms:</label>
-          <input type="number" id="bathInput" name="bathrooms" required />
-        </div>
-        <div class="col">
-          <label for="beds">Beds:</label>
-          <input type="number" id="bedsInput" name="beds" required />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="street">Street:</label>
-          <input type="text" id="strInput" name="street" required />
-        </div>
-        <div class="col">
-          <label for="number">Number:</label>
-          <input type="text" id="numInput" name="number" required />
-        </div>
 
-        <div class="col">
-          <label for="municipality">Municipality:</label>
-          <input type="text" id="munInput" name="municipality" required />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="category">Category:</label>
-          <input type="text" id="cateInput" name="category" required />
-        </div>
-        <div class="col">
-          <label for="owner">Owner:</label>
-          <input type="text" id="ownerInput" name="owner" required />
-        </div>
-        <div class="col">
-          <label for="pis_porta">PisPorta:</label>
-          <input type="text" id="pisInput" name="pis_porta" required />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="tipus_allotj">Tipus_Allotj:</label>
-          <input type="text" id="allInput" name="tipus_allotj" required />
-        </div>
-        <div class="col">
-          <label for="tipus_vaca">Tipus_vaca:</label>
-          <input type="text" id="typInput" name="tipus_vaca" required />
-        </div>
-        <div class="col">
-          <label for="longitude">Longitude:</label>
-          <input type="text" id="longInput" name="longitude" required />
-        </div>
-        <div class="col">
-          <label for="latitude">Latitude:</label>
-          <input type="text" id="latInput" name="latitude" required />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="description">Description:</label><br />
-          <textarea
-            id="description"
-            name="description"
-            rows="4"
-            cols="50"
-            required
-          ></textarea>
+<head>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/edit_screen.css" />
+  <title>Edit a House</title>
+</head>
 
-          <button type="submit" class="btn btn-primary" id="edit-button">
-            Edit
-          </button>
-        </div>
+<body>
+  <form action="#" method="post" id="edithouseform">
+    <div class="title" id="newText">
+      <h1>Edit a House</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="name">Name:</label>
+        <input type="text" id="nameInput" name="name" required />
       </div>
-    </form>
-    <script src="../js/rendererInsertarEdit.js"></script>
-  </body>
+      <div class="col">
+        <label for="r_number">R.Number:</label>
+        <input type="text" id="r_numberInput" name="r_number" required />
+      </div>
+      <div class="col">
+        <label for="people">People:</label>
+        <input type="number" id="peopleInput" name="people" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="toilets">Toilets:</label>
+        <input type="number" id="toiletInput" name="toilets" required />
+      </div>
+      <div class="col">
+        <label for="bathrooms">Bathrooms:</label>
+        <input type="number" id="bathInput" name="bathrooms" required />
+      </div>
+      <div class="col">
+        <label for="beds">Beds:</label>
+        <input type="number" id="bedsInput" name="beds" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="street">Street:</label>
+        <input type="text" id="strInput" name="street" required />
+      </div>
+      <div class="col">
+        <label for="number">Number:</label>
+        <input type="text" id="numInput" name="number" required />
+      </div>
+
+      <div class="col">
+        <label for="municipality">Municipality:</label>
+        <input type="text" id="munInput" name="municipality" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="category">Category:</label>
+        <input type="text" id="cateInput" name="category" required />
+      </div>
+      <div class="col">
+        <label for="pis_porta">PisPorta:</label>
+        <input type="text" id="pisInput" name="pis_porta" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="tipus_allotj">Tipus_Allotj:</label>
+        <input type="text" id="allInput" name="tipus_allotj" required />
+      </div>
+      <div class="col">
+        <label for="tipus_vaca">Tipus_vaca:</label>
+        <input type="text" id="typInput" name="tipus_vaca" required />
+      </div>
+      <div class="col">
+        <label for="longitude">Longitude:</label>
+        <input type="text" id="longInput" name="longitude" required />
+      </div>
+      <div class="col">
+        <label for="latitude">Latitude:</label>
+        <input type="text" id="latInput" name="latitude" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="description">Description:</label><br />
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+
+        <button type="submit" class="btn btn-primary" id="edit-button">
+          Edit
+        </button>
+      </div>
+    </div>
+  </form>
+  <script src="../js/rendererInsertarEdit.js"></script>
+</body>
+
 </html>

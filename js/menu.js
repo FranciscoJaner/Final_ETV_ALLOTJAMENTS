@@ -66,7 +66,7 @@ const loged_menu = [
     label: "HOME",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./html/edit_house.html");
+      mainWindow.loadFile("./index.html");
     },
   },
   {
@@ -83,7 +83,7 @@ const loged_menu = [
         label: "UPDATE HOUSE",
         click: async () => {
           const { mainWindow } = require("../main.js");
-          mainWindow.loadFile("./html/update_house.html");
+          mainWindow.loadFile("./html/edit_own_house.html");
         },
       },
     ],
