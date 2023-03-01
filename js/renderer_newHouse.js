@@ -13,7 +13,6 @@ form.addEventListener("submit", function () {
   let number = document.getElementById("numInput").value;
   let municipality = document.getElementById("munInput").value;
   let category = document.getElementById("cateInput").value;
-  let owner = document.getElementById("ownerInput").value;
   let description = document.getElementById("description").value;
   let bath = document.getElementById("bethInput").value;
   let pisporta = document.getElementById("pisInput").value;
@@ -22,6 +21,7 @@ form.addEventListener("submit", function () {
   let longitude = document.getElementById("longInput").value;
   let latitude = document.getElementById("latInput").value;
 
+  // Creamos un objeto con los valores que recogemos que sera lo que le pasamos a traves del renderer.
   let newHouse = {
     nom: name,
     descripcio: description,
@@ -36,7 +36,7 @@ form.addEventListener("submit", function () {
     municipi_id: municipality,
     tipus_allotjament_id: accommodationtype,
     tipus_vacances_id: vacationtype,
-    propietari_id: owner,
+    propietari_id: null,
     categoria_id: category,
     longitud: longitude,
     latitud: latitude,

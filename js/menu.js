@@ -1,5 +1,4 @@
 const { app, Menu } = require("electron");
-
 const isMac = process.platform === "darwin";
 
 const initial_menu = [
@@ -80,6 +79,13 @@ const loged_menu = [
           mainWindow.loadFile("./html/form_newhouse.html");
         },
       },
+      {
+        label: "UPDATE HOUSE",
+        click: async () => {
+          const { mainWindow } = require("../main.js");
+          mainWindow.loadFile("./html/update_house.html");
+        },
+      },
     ],
   },
   {
@@ -98,9 +104,10 @@ const loged_menu = [
   },
   {
     label: "LOG OUT",
-    click: async () => {
-      const { mainWindow } = require("../main.js");
-      mainWindow.loadFile("./html/.html");
+    click: () => {
+      const { mainWindow, logout } = require("../main.js");
+      logout();
+      mainWindow.loadFile("./index.html");
     },
   },
 ];

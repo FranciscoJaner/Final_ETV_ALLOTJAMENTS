@@ -7,12 +7,8 @@ const { net } = require("electron");
 let mainWindow;
 let userToken;
 let userId;
-let dadesmapa;
-let latitud;
-let longitud;
 let hostname = "etv.dawpaucasesnoves.com";
 let protocol = "http:";
-let x = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -31,6 +27,7 @@ function createWindow() {
   module.exports.mainWindow = mainWindow;
   mainWindow.webContents.openDevTools();
 }
+
 app.on("ready", () => {
   createWindow();
 
@@ -61,12 +58,14 @@ function chargeToken(tokens) {
   console.log(userToken);
 }
 
-function getDadesMapa(dades) {
-  dadesmapa = JSON.parse(dades);
-  longitud = dadesmapa.result.LONGITUD;
-  latitud = dadesmapa.result.LATIUD;
-  console.log("main, longitud, latitud: " + latitud + ", " + longitud);
+// Funcion que pone el token en 0 y actualiza el menu, esta la exportamos, para utilizarla en el menu.js a la hora de hacer clic en la opcion.
+function logOut() {
+  userToken = 0;
+  userId = 0;
+  Menu.setApplicationMenu(menu);
 }
+
+module.exports.logout = logOut;
 
 //MAINS
 
@@ -195,7 +194,10 @@ ipcMain.on("insert-house", function (e, info) {
     },
   });
 
-  let postData = JSON.stringify(info);
+  let casa = info;
+  casa.propietari_id = userId;
+
+  let postData = JSON.stringify(casa);
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
