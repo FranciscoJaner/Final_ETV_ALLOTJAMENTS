@@ -1,19 +1,19 @@
-const { ipcRenderer } = require("electron")
-let $ = ({ jQuery } = require("jquery"))
+const { ipcRenderer } = require("electron");
+let $ = ({ jQuery } = require("jquery"));
 
-//punteros
-let divPrincipalInject = $('#body-casas');
+//Punteros
+let divPrincipalInject = $("#body-casas");
 
-//enviamos apenas abrimos la app un mensaje para cargar el contenido
+//Enviamos apenas abrimos la app un mensaje para cargar el contenido.
 ipcRenderer.send("load-content");
 
-//recebimos el contenido de la api
-ipcRenderer.on("enviar-casas", function(e, info) {
-  //conversión del JSON a objecto
+//recebimos el contenido de la api.
+ipcRenderer.on("enviar-casas", function (e, info) {
+  //Conversión del JSON a objeto.
   let fotoObject = JSON.parse(info);
   fotoObject = fotoObject.data;
 
-  //creación de los div
+  //Creación de los div.
   fotoObject.forEach((_element) => {
     let divPrincipal = $(`<div class="col-sm-4 formato-cards"></div>`);
 
@@ -21,8 +21,8 @@ ipcRenderer.on("enviar-casas", function(e, info) {
     let name = $(`<p>${_element.allotjament.nom}</p>`);
     let descripcion = $(`<p>${_element.allotjament.descripcio}</p>`);
 
-    divPrincipal.append(imagen,name,descripcion);
-    console.log(divPrincipal)
-    divPrincipalInject.append(divPrincipal)
-  })
+    divPrincipal.append(imagen, name, descripcion);
+    console.log(divPrincipal);
+    divPrincipalInject.append(divPrincipal);
+  });
 });

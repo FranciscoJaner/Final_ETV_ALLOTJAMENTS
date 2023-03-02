@@ -15,7 +15,6 @@ form.addEventListener("submit", function () {
   let number = document.getElementById("numInput").value;
   let municipality = document.getElementById("munInput").value;
   let category = document.getElementById("cateInput").value;
-  let owner = document.getElementById("ownerInput").value;
   let description = document.getElementById("description").value;
   let bath = document.getElementById("bathInput").value;
   let pisporta = document.getElementById("pisInput").value;
@@ -38,12 +37,13 @@ form.addEventListener("submit", function () {
     municipi_id: municipality,
     tipus_allotjament_id: accommodationtype,
     tipus_vacances_id: vacationtype,
-    propietari_id: owner,
+    propietari_id: null,
     categoria_id: category,
     longitud: longitude,
     latitud: latitude,
   };
-  // recoge la id del otro renderer
+
+  // Recoge la id del otro renderer
   ipcRenderer.on("give-id", function (e, args) {
     id = args;
   });

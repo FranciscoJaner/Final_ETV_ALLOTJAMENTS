@@ -128,8 +128,10 @@ ipcMain.on("load-content", function (event) {
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
-      //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      body += chunk;
+      console.log(body);
+
+      //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
       event.sender.send("enviar-casas", body);
       event.sender.send("enviar-edit", body);
     });
@@ -163,7 +165,8 @@ ipcMain.on("load-content-dashboard", function (event, tipo) {
   request.on("response", (response) => {
     response.on("data", (chunk) => {
       body = `${chunk}`;
-      //una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer.
+
       event.sender.send("enviar-info-casas", body);
       event.sender.send("enviar-edit-mod", body, userId);
     });
@@ -237,7 +240,9 @@ ipcMain.on("edit_house", function (e, args, id) {
     },
   });
 
-  const postData = JSON.stringify(args);
+  let casa = args;
+  casa.propietari_id = userId;
+  const postData = JSON.stringify(casa);
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
@@ -290,15 +295,4 @@ ipcMain.on("delete_house", function (e, args) {
   });
 
   request.end();
-});
-
-ipcMain.on("open-window", (e, htmlFile) => {
-  const newWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  newWindow.loadFile(htmlFile);
 });
