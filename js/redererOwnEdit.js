@@ -35,8 +35,7 @@ function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
   ipcRenderer.send("give-id", id);
   if (user_id == propietari_id) {
-    const { mainWindow } = require("../main.js");
-    mainWindow.loadFile("./html/form_edit_house.html");
+    ipcRenderer.send("editwindow")
   } else {
     dialog.showMessageBox({
       title: "Warning",

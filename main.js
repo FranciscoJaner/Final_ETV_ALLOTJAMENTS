@@ -247,10 +247,9 @@ ipcMain.on("edit_house", function (e, args, id) {
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
-  let body;
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
+      console.log(response.statusMessage);
     });
 
     response.on("end", () => {
@@ -295,3 +294,11 @@ ipcMain.on("delete_house", function (e, args) {
 
   request.end();
 });
+
+ipcMain.on("editwindow", function(){
+  editwindow()
+})
+
+function editwindow() {
+  mainWindow.loadFile("./html/form_edit_house.html");
+}
