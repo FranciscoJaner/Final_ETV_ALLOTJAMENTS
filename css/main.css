@@ -5,12 +5,8 @@
   font-family: "Calibri Light";
 }
 
-body {
-  background-color: black;
-}
-
 form {
-  padding: 50px;
+  padding: 80px;
   background-color: #b7435a;
   border-radius: 5px;
   margin: 50px;
@@ -39,7 +35,11 @@ form {
   color: black;
   border-bottom-style: none;
   border-color: black;
-  box-shadow: 10px black;
+  transform: scale(1.1);
+}
+
+.form-group{
+  width: 420px;
 }
 
 /* MAIN PAGE */
@@ -68,8 +68,10 @@ form {
 }
 
 #body-casas {
-  margin: 20px;
-  padding: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .formato-cards {
@@ -79,6 +81,7 @@ form {
   border-radius: 10px;
   width: 380px;
   margin: 40px;
+  height: 520px;
 }
 
 .formato-cards > img {

@@ -7,31 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/newhouse.css">
     <title>LOGIN-PAGE</title>
 </head>
 
 <body>
-    <form id="login-form">
-        <div class="text-center col-sm-12" id="head-form">
-            <h4>Login 4 API</h4>
-        </div>
+    <div class="container newHouseContainer">
+        <form id="login-form">
+            <div class="text-center col-sm-12" id="head-form">
+                <h4>Login 4 API</h4>
+            </div>
 
-        <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                placeholder="Introduce tu email" title="Escribe un correo válido" />
-        </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                       placeholder="Introduce tu email" title="Escribe un correo válido" />
+            </div>
 
-        <div class="form-group">
-            <label for="passwd">Contraseña</label>
-            <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña"
-                pattern="[a-zA-Z0-9]{4}*" title="La contraseña tiene que tener al menos 6 caracteres">
-        </div>
+            <div class="form-group">
+                <label for="passwd">Contraseña</label>
+                <input type="password" class="form-control" id="passwd" placeholder="Introduce tu contraseña"
+                       pattern="[a-zA-Z0-9]{4}*" title="La contraseña tiene que tener al menos 6 caracteres">
+            </div>
 
-        <button type="submit" class="btn btn-primary" id="button-login">
-            Logearse
-        </button>
-    </form>
+            <button type="submit" class="btn btn-primary" id="button-login">
+                Logearse
+            </button>
+        </form>
+    </div>
     <script src="../js/renderLogin.js"></script>
 </body>
 
