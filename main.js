@@ -97,6 +97,7 @@ ipcMain.on("login-data", function (e, email, password) {
       if (response.statusMessage == "OK") {
         Menu.setApplicationMenu(menu2);
         mainWindow.loadFile("./index.html");
+      } else {
       }
     });
   });
@@ -342,7 +343,7 @@ ipcMain.on("inyectar-datos", function (e) {
     });
 
     response.on("end", () => {
-      e.sender.send("enviando-datos-concretos",JSON.parse(body))
+      e.sender.send("enviando-datos-concretos", JSON.parse(body));
     });
   });
 
@@ -351,18 +352,19 @@ ipcMain.on("inyectar-datos", function (e) {
   });
 
   request.end();
-})
-
-function mostrarDialog() {
-ipcMain.on("mostrarDialog", function (e, text) {
-  mostrarDialog(text);
 });
 
-function mostrarDialog(text) {
-  dialog.showMessageBox({
-    title: "Info",
-    buttons: ["Okay"],
-    type: "info",
-    message: `${text}`,
+function mostrarDialog() {
+  ipcMain.on("mostrarDialog", function (e, text) {
+    mostrarDialog(text);
   });
+
+  function mostrarDialog(text) {
+    dialog.showMessageBox({
+      title: "Info",
+      buttons: ["Okay"],
+      type: "info",
+      message: `${text}`,
+    });
+  }
 }
