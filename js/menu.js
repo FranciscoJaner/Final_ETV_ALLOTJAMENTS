@@ -1,6 +1,7 @@
 const { app, Menu } = require("electron");
 const isMac = process.platform === "darwin";
 
+// menu inicial del menu sin iniciar sesion
 const initial_menu = [
   // { role: 'appMenu' }
   ...(isMac
@@ -40,6 +41,7 @@ const initial_menu = [
   },
 ];
 
+// menu que sale cuando estas logueado
 const loged_menu = [
   // { role: 'appMenu' }
   ...(isMac
