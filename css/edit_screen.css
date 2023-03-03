@@ -5,18 +5,21 @@ body {
 }
 
 form {
-  max-width: 600px;
-  margin: 0 auto;
+  border-radius: 20px;
+  background-color: rgba(79, 79, 79, 0.813);
   padding: 20px;
-  background-color: rgba(218, 194, 194, 0.8);
-  border-radius: 10px;
-  text-align: center;
+}
+
+.editHouseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 label {
+  color: white;
   display: block;
-  margin-bottom: 5px;
-  opacity: 100%;
 }
 
 input[type="text"],
@@ -66,4 +69,9 @@ input[type="submit"]:hover {
     display: block;
     margin-bottom: 10px;
   }
+}
+
+h1 {
+  color: white;
+  text-align: center;
 }

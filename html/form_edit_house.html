@@ -8,92 +8,95 @@
 </head>
 
 <body>
-  <form action="#" method="post" id="edithouseform">
-    <div class="title" id="newText">
-      <h1>Edit a House</h1>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="nameInput">Name:</label>
-        <input type="text" id="nameInput" name="name" required />
+  <div class="container editHouseContainer">
+    <form action="#" method="post" id="edithouseform">
+      <div class="title" id="newText">
+        <h1>Edit a House</h1>
       </div>
-      <div class="col">
-        <label for="r_numberInput">R.Number:</label>
-        <input type="text" id="r_numberInput" name="r_number" required />
+      <div class="row">
+        <div class="col">
+          <label for="nameInput">Name:</label>
+          <input type="text" id="nameInput" name="name" required />
+        </div>
+        <div class="col">
+          <label for="r_numberInput">R.Number:</label>
+          <input type="text" id="r_numberInput" name="r_number" required />
+        </div>
+        <div class="col">
+          <label for="peopleInput">People:</label>
+          <input type="number" id="peopleInput" name="people" required />
+        </div>
       </div>
-      <div class="col">
-        <label for="peopleInput">People:</label>
-        <input type="number" id="peopleInput" name="people" required />
+      <div class="row">
+        <div class="col">
+          <label for="toiletInput">Toilets:</label>
+          <input type="number" id="toiletInput" name="toilets" required />
+        </div>
+        <div class="col">
+          <label for="bathInput">Bathrooms:</label>
+          <input type="number" id="bathInput" name="bathrooms" required />
+        </div>
+        <div class="col">
+          <label for="bedsInput">Beds:</label>
+          <input type="number" id="bedsInput" name="beds" required />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="toiletInput">Toilets:</label>
-        <input type="number" id="toiletInput" name="toilets" required />
-      </div>
-      <div class="col">
-        <label for="bathInput">Bathrooms:</label>
-        <input type="number" id="bathInput" name="bathrooms" required />
-      </div>
-      <div class="col">
-        <label for="bedsInput">Beds:</label>
-        <input type="number" id="bedsInput" name="beds" required />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="strInput">Street:</label>
-        <input type="text" id="strInput" name="street" required />
-      </div>
-      <div class="col">
-        <label for="numInput">Number:</label>
-        <input type="text" id="numInput" name="number" required />
-      </div>
+      <div class="row">
+        <div class="col">
+          <label for="strInput">Street:</label>
+          <input type="text" id="strInput" name="street" required />
+        </div>
+        <div class="col">
+          <label for="numInput">Number:</label>
+          <input type="text" id="numInput" name="number" required />
+        </div>
 
-      <div class="col">
-        <label for="munInput">Municipality:</label>
-        <input type="text" id="munInput" name="municipality" required />
+        <div class="col">
+          <label for="munInput">Municipality:</label>
+          <input type="text" id="munInput" name="municipality" required />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="cateInput">Category:</label>
-        <input type="text" id="cateInput" name="category" required />
+      <div class="row">
+        <div class="col">
+          <label for="cateInput">Category:</label>
+          <input type="text" id="cateInput" name="category" required />
+        </div>
+        <div class="col">
+          <label for="pisInput">PisPorta:</label>
+          <input type="text" id="pisInput" name="pis_porta" required />
+        </div>
       </div>
-      <div class="col">
-        <label for="pisInput">PisPorta:</label>
-        <input type="text" id="pisInput" name="pis_porta" required />
+      <div class="row">
+        <div class="col">
+          <label for="allInput">Tipus_Allotj:</label>
+          <input type="text" id="allInput" name="tipus_allotj" required />
+        </div>
+        <div class="col">
+          <label for="typInput">Tipus_vaca:</label>
+          <input type="text" id="typInput" name="tipus_vaca" required />
+        </div>
+        <div class="col">
+          <label for="longInput">Longitude:</label>
+          <input type="text" id="longInput" name="longitude" required />
+        </div>
+        <div class="col">
+          <label for="latInput">Latitude:</label>
+          <input type="text" id="latInput" name="latitude" required />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="allInput">Tipus_Allotj:</label>
-        <input type="text" id="allInput" name="tipus_allotj" required />
-      </div>
-      <div class="col">
-        <label for="typInput">Tipus_vaca:</label>
-        <input type="text" id="typInput" name="tipus_vaca" required />
-      </div>
-      <div class="col">
-        <label for="longInput">Longitude:</label>
-        <input type="text" id="longInput" name="longitude" required />
-      </div>
-      <div class="col">
-        <label for="latInput">Latitude:</label>
-        <input type="text" id="latInput" name="latitude" required />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="description">Description:</label><br />
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+      <div class="row">
+        <div class="col">
+          <label for="description">Description:</label><br />
+          <textarea id="description" name="description" rows="4" cols="50" required></textarea>
 
-        <button type="submit" class="btn btn-primary" id="edit-button">
-          Edit
-        </button>
+          <button type="submit" class="btn btn-primary" id="edit-button">
+            Edit
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
   <script src="../js/rendererInsertarEdit.js"></script>
 </body>
+
 </html>
