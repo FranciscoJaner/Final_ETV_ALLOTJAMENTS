@@ -83,6 +83,7 @@ ipcMain.on("login-data", function (e, email, password) {
   let body;
 
   let postData = JSON.stringify({
+    //
     email: `${email}`,
     password: `${password}`,
   });
@@ -128,8 +129,7 @@ ipcMain.on("load-content", function (event) {
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body += chunk;
-      console.log(body);
+      body = `${chunk}`;
 
       //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
       event.sender.send("enviar-casas", body);
@@ -233,24 +233,24 @@ ipcMain.on("edit_house", function (e, args, id) {
     method: "PUT",
     hostname: hostname,
     protocol: protocol,
-    path: `/etvServidor/public/api/allotjaments/${id}`,
+    path: `etvServidor/public/api/allotjaments`,
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": postData.length,
+      accept: "application/json",
     },
   });
 
   let casa = args;
   casa.propietari_id = userId;
+  casa.id = id;
   const postData = JSON.stringify(casa);
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
+  let body;
   request.on("response", (response) => {
-    let responseBody = "";
-
     response.on("data", (chunk) => {
-      responseBody += chunk.toString();
+      body = `${chunk}`;
     });
 
     response.on("end", () => {
@@ -262,7 +262,7 @@ ipcMain.on("edit_house", function (e, args, id) {
     console.error(error);
   });
 
-  request.write(postData);
+  request.write(postData, "utf-8");
   request.end();
 });
 
@@ -278,11 +278,10 @@ ipcMain.on("delete_house", function (e, args) {
     },
   });
 
+  let body;
   request.on("response", (response) => {
-    let responseBody = "";
-
     response.on("data", (chunk) => {
-      responseBody += chunk.toString();
+      body = `${chunk}`;
     });
 
     response.on("end", () => {

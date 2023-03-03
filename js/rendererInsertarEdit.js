@@ -24,6 +24,7 @@ form.addEventListener("submit", function () {
   let latitude = document.getElementById("latInput").value;
 
   let editHouse = {
+    id: null,
     nom: name,
     descripcio: description,
     nregistre: rnumber,

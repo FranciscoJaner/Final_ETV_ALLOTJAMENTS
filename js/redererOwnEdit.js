@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, dialog } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
 //punteros
@@ -26,7 +26,6 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, id) {
       `<button type="button" id="editButton" onclick='modificarCasa(${_element.id}, ${_element.propietari_id})'>EDIT</button>`
     );
     divPrincipal.append(name, descripcion, botonEdit);
-    console.log(divPrincipal);
     divPrincipalInject.append(divPrincipal);
   });
 });
@@ -36,12 +35,14 @@ function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
   ipcRenderer.send("give-id", id);
   if (user_id == propietari_id) {
-    mainWindow.loadFile();
+    const { mainWindow } = require("../main.js");
+    mainWindow.loadFile("./html/form_edit_house.html");
   } else {
-    const { dialog, mainWindow } = require("../main.js");
     dialog.showMessageBox({
+      title: "Warning",
+      buttons: ["Okay"],
       type: "info",
-      message: "You are not allowed to edit this house!",
+      message: "You are not allowed to modify this house!",
     });
   }
 }
