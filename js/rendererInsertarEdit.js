@@ -41,7 +41,6 @@ form.addEventListener("submit", function () {
     latitud: latitude,
   };
 
-  // Recoge la id del otro renderer
   ipcRenderer.send("edit_house", editHouse);
 });
 

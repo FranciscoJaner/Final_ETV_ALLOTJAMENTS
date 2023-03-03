@@ -1,4 +1,4 @@
-const { ipcRenderer , dialog} = require("electron");
+const { ipcRenderer, dialog } = require("electron");
 
 let form = document.getElementById("newhouseForm");
 
@@ -42,15 +42,8 @@ form.addEventListener("submit", function () {
     latitud: latitude,
   };
 
-  //Mostramos un mensaje de que se ha creado correctamente la casa
-  dialog.showMessageBox({
-    type: "info",
-    message:
-        "Casa creada correctamente",
-  });
   // Enviamos al main todos los datos.
   ipcRenderer.send("insert-house", newHouse);
-
 });
 
 ipcRenderer.on("insert-finished", function (e) {

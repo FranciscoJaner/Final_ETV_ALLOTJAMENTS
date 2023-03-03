@@ -313,20 +313,12 @@ ipcMain.on("editwindow", function () {
   editwindow();
 });
 
-ipcMain.on("edithouse", function () {
-  editwindow2();
-});
-
 ipcMain.on("mostrarDialog", function () {
   mostrarDialog();
 });
 
 function editwindow() {
   mainWindow.loadFile("./html/form_edit_house.html");
-}
-
-function editwindow2() {
-  mainWindow.loadFile("./html/edit_own_house.html");
 }
 
 function mostrarDialog() {
