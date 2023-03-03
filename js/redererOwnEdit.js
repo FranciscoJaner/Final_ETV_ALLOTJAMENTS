@@ -37,6 +37,9 @@ function modificarCasa(id, propietari_id) {
     ipcRenderer.send("editwindow");
   } else {
     // si no tiene acceso a editar una casa sale un dialog que se activa desde el main
-    ipcRenderer.send("mostrarDialog");
+    ipcRenderer.send(
+      "mostrarDialog",
+      "You are not allowed to modify this house!!"
+    );
   }
 }
