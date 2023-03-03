@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-let $ = {jQuery} = require('jquery');
+let $ = ({ jQuery } = require("jquery"));
 
 var map = L.map("map").setView([39.586006, 2.9], 10);
 
@@ -29,8 +29,7 @@ function onMarkerClick(e) {
 ipcRenderer.send("load-content");
 
 ipcRenderer.on("enviar-casas", function (e, info) {
-  let fotoObject = JSON.parse(info);
-  fotoObject = fotoObject.data;
+  let fotoObject = info.data;
   fotoObject.forEach((_element) => {
     marker = L.marker([
       _element.allotjament.latitud,

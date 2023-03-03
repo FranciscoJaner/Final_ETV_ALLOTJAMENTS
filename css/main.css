@@ -5,11 +5,16 @@
   font-family: "Calibri Light";
 }
 
+body {
+  background-color: black;
+}
+
 form {
   padding: 50px;
   background-color: #b7435a;
   border-radius: 5px;
   margin: 50px;
+  margin-top: 70px;
 }
 #head-form {
   color: ghostwhite;
@@ -39,24 +44,23 @@ form {
 
 /* MAIN PAGE */
 
-.letrasInicio{
-    color: white;
-    font-size: 28px;
-    font-weight: bolder;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    text-align: center;
+.letrasInicio {
+  color: white;
+  font-size: 28px;
+  font-weight: bolder;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  text-align: center;
 }
 
-.head-image{
-    height: 40vh;
-    background-image: url("../assets/img/foto-background-interior.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.head-image {
+  height: 40vh;
+  background-image: url("../assets/img/foto-background-interior.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #map {
   height: 500px;
@@ -96,18 +100,17 @@ form {
 .formato-cards > p:nth-of-type(2) {
   text-align: justify;
 }
-.formato-cards > p:nth-of-type(2){
-    text-align: justify;
+.formato-cards > p:nth-of-type(2) {
+  text-align: justify;
 }
 /* DASHBOARD */
 
-#dashboardTitle{
-    text-align: center;
-    margin-top: 30px;
+#dashboardTitle {
+  text-align: center;
+  margin-top: 30px;
 }
 
-#graphic-1{
-    padding: 10px;
-    margin: 5px;
+#graphic-1 {
+  padding: 10px;
+  margin: 5px;
 }
-
