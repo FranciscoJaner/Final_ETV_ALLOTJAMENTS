@@ -49,9 +49,9 @@ form.addEventListener("submit", function () {
     id = args;
   });
 
-  ipcRenderer.send("edit-house", editHouse, id);
+  ipcRenderer.send("edit_house", editHouse, id);
 });
 
 ipcRenderer.on("edit-finished", function (e) {
-  e.sender.send("edit-house");
+  e.sender.send("edit_house");
 });

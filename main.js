@@ -312,11 +312,3 @@ ipcMain.on("editwindow", function () {
 function editwindow() {
   mainWindow.loadFile("./html/form_edit_house.html");
 }
-
-ipcMain.on("editwindow", function () {
-  editwindow();
-});
-
-function editwindow() {
-  mainWindow.loadFile("./html/form_edit_house.html");
-}
