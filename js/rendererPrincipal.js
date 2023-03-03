@@ -2,7 +2,7 @@ const { ipcRenderer } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
 //Punteros
-let divPrincipalInject = $("#body-casas");
+let divPrincipalInject = $(".body-casas");
 
 //Enviamos apenas abrimos la app un mensaje para cargar el contenido.
 ipcRenderer.send("load-content");

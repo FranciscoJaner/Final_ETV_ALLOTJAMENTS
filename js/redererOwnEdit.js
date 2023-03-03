@@ -2,7 +2,7 @@ const { ipcRenderer } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
 //punteros
-let divPrincipalInject = $("#body-casas");
+let divPrincipalInject = $(".body-casas");
 let user_id;
 
 //Enviamos apenas abrimos la app un mensaje para cargar el contenido.
