@@ -5,7 +5,7 @@ let form = document.getElementById("edithouseform");
 
 ipcRenderer.send("inyectar-datos");//Hacemos petición para que nos devuelvan la info de la casa
 
-//selectores
+//Selectores
 let name = document.getElementById("nameInput");
 let rnumber = document.getElementById("r_numberInput");
 let people = document.getElementById("peopleInput");
