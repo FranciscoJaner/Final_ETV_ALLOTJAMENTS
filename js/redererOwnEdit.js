@@ -1,7 +1,7 @@
 const { ipcRenderer } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
-//punteros
+//Punteros
 let divPrincipalInject = $(".body-casas");
 let user_id;
 
@@ -32,6 +32,7 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, idusuario) {
 // Envia id al otro renderer.
 function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
+  // Si la id del usuario coincide con la id del propietario
   if (user_id == propietari_id) {
     ipcRenderer.send("idcasa", id);
     ipcRenderer.send("editwindow");

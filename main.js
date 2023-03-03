@@ -51,6 +51,7 @@ app.on("activate", () => {
   if (mainWindow === null) createWindow();
 });
 
+//Funcion que le pasamos la informacion de el toquen y guarda en unas variables esta informacion para poder utilizarla mas adelante
 function chargeToken(tokens) {
   tokenKey = JSON.parse(tokens);
   userId = tokenKey.data.usuari.id;
@@ -71,9 +72,8 @@ module.exports.logout = logOut;
 
 //MAINS
 
-// Main para el login.
+// Main para el login, a este le pasamos los datos de email y la contraseña que no pase el renderer.
 ipcMain.on("login-data", function (e, email, password) {
-  //ahora tenemos que enviar la petición
   const request = net.request({
     method: "POST",
     hostname: hostname,
@@ -84,7 +84,6 @@ ipcMain.on("login-data", function (e, email, password) {
   let body;
 
   let postData = JSON.stringify({
-    //
     email: `${email}`,
     password: `${password}`,
   });
@@ -270,10 +269,11 @@ ipcMain.on("edit_house", function (e, args) {
 
     response.on("end", () => {
       if (response.statusCode == "200") {
+        // En el caso que el status code sea Ok, hara lo siguiente
         mostrarDialog("You have edited the house successfully");
         mainWindow.loadFile("./html/edit_own_house.html");
       } else {
-        mostrarDialog("Error");
+        mostrarDialog("Error"); // Sino mostrara un dialogo de error
       }
     });
   });
@@ -316,14 +316,6 @@ ipcMain.on("delete_house", function (e, args) {
   request.end();
 });
 
-ipcMain.on("idcasa", function (e, id) {
-  idcasa = id;
-});
-
-ipcMain.on("editwindow", function () {
-  mainWindow.loadFile("./html/form_edit_house.html");
-});
-
 ipcMain.on("inyectar-datos", function (e) {
   const request = net.request({
     method: "GET",
@@ -354,17 +346,27 @@ ipcMain.on("inyectar-datos", function (e) {
   request.end();
 });
 
-function mostrarDialog() {
-  ipcMain.on("mostrarDialog", function (e, text) {
-    mostrarDialog(text);
-  });
+//Main que guardara la id de la casa en una variable, sgun la id que le pasemos desde el renderer
+ipcMain.on("idcasa", function (e, id) {
+  idcasa = id;
+});
 
-  function mostrarDialog(text) {
-    dialog.showMessageBox({
-      title: "Info",
-      buttons: ["Okay"],
-      type: "info",
-      message: `${text}`,
-    });
-  }
+// Main que cambiara la ventana cuando el id del usuario y la id de lpropietario coincidad.
+ipcMain.on("editwindow", function () {
+  mainWindow.loadFile("./html/form_edit_house.html");
+});
+
+// Main el cual mostraremos un dialogo cuando el renderer realize la peticion segun, el mensaje que este nos envie.
+ipcMain.on("mostrarDialog", function (e, text) {
+  mostrarDialog(text);
+});
+
+// Funcion que le pasamos por parametro un texto, que mostrara un dialogo con ese texto que le pasamos.
+function mostrarDialog(text) {
+  dialog.showMessageBox({
+    title: "Info",
+    buttons: ["Okay"],
+    type: "info",
+    message: `${text}`,
+  });
 }
