@@ -44,6 +44,7 @@ form.addEventListener("submit", function () {
 
   // Enviamos al main todos los datos.
   ipcRenderer.send("insert-house", newHouse);
+  ipcRenderer.send("changeWindow", "Hola");
 });
 
 ipcRenderer.on("insert-finished", function (e) {

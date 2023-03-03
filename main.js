@@ -219,7 +219,13 @@ ipcMain.on("insert-house", function (e, info) {
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {});
-    console.log(response.statusMessage);
+
+    response.on("end", () => {
+      if (response.statusCode == "200") {
+        mostrarDialog("You have created the house correctly");
+        mainWindow.loadFile("index.html");
+      }
+    });
   });
   request.on("finish", () => {
     console.log("Request is Finished");
@@ -255,7 +261,6 @@ ipcMain.on("edit_house", function (e, args) {
   casa.propietari_id = userId;
 
   const postData = JSON.stringify(casa);
-  console.log(postData);
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
@@ -263,7 +268,12 @@ ipcMain.on("edit_house", function (e, args) {
     response.on("data", (chunk) => {});
 
     response.on("end", () => {
-      console.log(response.statusCode);
+      if (response.statusCode == "200") {
+        mostrarDialog("You have edited the house successfully");
+        mainWindow.loadFile("./html/edit_own_house.html");
+      } else {
+        mostrarDialog("Error");
+      }
     });
   });
 
@@ -310,16 +320,8 @@ ipcMain.on("idcasa", function (e, id) {
 });
 
 ipcMain.on("editwindow", function () {
-  editwindow();
-});
-
-ipcMain.on("mostrarDialog", function () {
-  mostrarDialog();
-});
-
-function editwindow() {
   mainWindow.loadFile("./html/form_edit_house.html");
-}
+});
 
 ipcMain.on("inyectar-datos", function (e) {
   const request = net.request({
@@ -352,11 +354,15 @@ ipcMain.on("inyectar-datos", function (e) {
 })
 
 function mostrarDialog() {
-  // dialog que se activa desde un renderer
+ipcMain.on("mostrarDialog", function (e, text) {
+  mostrarDialog(text);
+});
+
+function mostrarDialog(text) {
   dialog.showMessageBox({
-    title: "Warning",
+    title: "Info",
     buttons: ["Okay"],
     type: "info",
-    message: "You are not allowed to modify this house!",
+    message: `${text}`,
   });
 }
