@@ -10,8 +10,7 @@ ipcRenderer.send("load-content");
 //recebimos el contenido de la api.
 ipcRenderer.on("enviar-casas", function (e, info) {
   //Conversión del JSON a objeto.
-  let fotoObject = JSON.parse(info);
-  fotoObject = fotoObject.data;
+  fotoObject = info.data;
 
   //Creación de los div.
   fotoObject.forEach((_element) => {

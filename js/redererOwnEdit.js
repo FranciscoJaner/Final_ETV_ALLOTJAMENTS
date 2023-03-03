@@ -5,7 +5,7 @@ let $ = ({ jQuery } = require("jquery"));
 let divPrincipalInject = $("#body-casas");
 let user_id;
 
-//Enviamos apenas abrimos la app un mensaje para cargar el contenido
+//Enviamos apenas abrimos la app un mensaje para cargar el contenido.
 ipcRenderer.send("load-content-dashboard");
 
 //Recbimos el contenido de la api.
@@ -13,8 +13,7 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, id) {
   user_id = id;
 
   //Conversión del JSON a objeto.
-  let fotoObject = JSON.parse(info);
-  fotoObject = fotoObject.data;
+  let fotoObject = info.data;
 
   //Creación de los div con los botones de delete y edit
   fotoObject.forEach((_element) => {
@@ -30,7 +29,7 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, id) {
   });
 });
 
-// Envia id al otro renderer y crea una ventana modal
+// Envia id al otro renderer.
 function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
   ipcRenderer.send("give-id", id);

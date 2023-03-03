@@ -99,6 +99,7 @@ ipcMain.on("login-data", function (e, email, password) {
       }
     });
   });
+
   request.on("finish", () => {
     console.log("Request is Finished");
   });
@@ -125,15 +126,17 @@ ipcMain.on("load-content", function (event) {
     path: "etvServidor/public/api/fotos",
   });
 
-  let body;
+  let body = "";
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
+      body += chunk;
+    });
 
+    response.on("end", () => {
       //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
-      event.sender.send("enviar-casas", body);
-      event.sender.send("enviar-edit", body);
+      event.sender.send("enviar-casas", JSON.parse(body));
+      event.sender.send("enviar-edit", JSON.parse(body));
     });
   });
   request.on("finish", () => {
@@ -160,17 +163,24 @@ ipcMain.on("load-content-dashboard", function (event, tipo) {
     path: "etvServidor/public/api/allotjaments",
   });
 
-  let body;
+  let body = "";
 
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
+      body += chunk;
       //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer.
-
-      event.sender.send("enviar-info-casas", body);
-      event.sender.send("enviar-edit-mod", body, userId);
+    });
+    response.on("end", () => {
+      //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
+      event.sender.send("enviar-info-casas", JSON.parse(body));
+      event.sender.send(
+        "enviar-edit-mod",
+        JSON.parse(body),
+        JSON.parse(userId)
+      );
     });
   });
+
   request.on("finish", () => {
     console.log("Request is Finished");
   });
@@ -247,14 +257,14 @@ ipcMain.on("edit_house", function (e, args, id) {
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
-  let body;
+  let body = "";
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
+      body += chunk;
     });
 
     response.on("end", () => {
-      console.log(responseBody);
+      console.log(body);
     });
   });
 
@@ -278,14 +288,14 @@ ipcMain.on("delete_house", function (e, args) {
     },
   });
 
-  let body;
+  let body = "";
   request.on("response", (response) => {
     response.on("data", (chunk) => {
-      body = `${chunk}`;
+      body += chunk;
     });
 
     response.on("end", () => {
-      console.log(responseBody);
+      console.log(body);
     });
   });
 
