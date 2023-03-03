@@ -3,7 +3,7 @@ const { app, BrowserWindow, Menu, ipcMain, dialog } = require("electron");
 const { menu, menu2 } = require("./js/menu.js");
 const { net } = require("electron");
 
-//variable globals
+// Varaibles globales.
 let idcasa;
 let mainWindow;
 let userToken;
@@ -11,6 +11,7 @@ let userId;
 let hostname = "etv.dawpaucasesnoves.com";
 let protocol = "http:";
 
+// Funcion para crear la window principal.
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -24,7 +25,7 @@ function createWindow() {
   });
   mainWindow.newTimer = true;
   Menu.setApplicationMenu(menu);
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("index.html"); // Asignamos menu, exportamos, etc..
   module.exports.mainWindow = mainWindow;
   mainWindow.webContents.openDevTools();
 }
@@ -169,7 +170,6 @@ ipcMain.on("load-content-dashboard", function (event, tipo) {
   request.on("response", (response) => {
     response.on("data", (chunk) => {
       body += chunk;
-      //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer.
     });
     response.on("end", () => {
       //Una vez que ha terminado la petición entonces, enviamos el JSON a nuestro renderer
@@ -205,7 +205,7 @@ ipcMain.on("insert-house", function (e, info) {
     protocol: protocol,
     path: "etvServidor/public/api/allotjaments",
     headers: {
-      "Content-Type": "application/json", // Diferentes headers necessarios para la peticion
+      "Content-Type": "application/json", // Diferentes headers necessarios para la peticion.
       accept: "application/json",
     },
   });
@@ -221,6 +221,7 @@ ipcMain.on("insert-house", function (e, info) {
     response.on("data", (chunk) => {});
 
     response.on("end", () => {
+      //Una vez que ha terminado la petición, si el statusCode es correcto saldra un dialogo y nos enviara a la pagina index.
       if (response.statusCode == "200") {
         mostrarDialog("You have created the house correctly");
         mainWindow.loadFile("index.html");
@@ -257,8 +258,8 @@ ipcMain.on("edit_house", function (e, args) {
     },
   });
 
-  let casa = args;
-  casa.propietari_id = userId;
+  let casa = args; // Convertimos lo que envia el renderer en un objeto casa.
+  casa.propietari_id = userId; // Asignamos la id del usuario a la id de propietario, para que cuando se edite la casa este sea el mismo.
 
   const postData = JSON.stringify(casa);
 
@@ -316,6 +317,7 @@ ipcMain.on("delete_house", function (e, args) {
   request.end();
 });
 
+//Main el cual lo utilizamos para devolver los datos de una casa en concreto, a este le introducimos el id de la casa que queremos recoger los datos. Una vez realizada la peticion enviamos la informacion al renderer
 ipcMain.on("inyectar-datos", function (e) {
   const request = net.request({
     method: "GET",

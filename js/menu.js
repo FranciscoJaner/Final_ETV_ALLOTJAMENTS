@@ -1,7 +1,7 @@
 const { app, Menu } = require("electron");
 const isMac = process.platform === "darwin";
 
-// menu inicial del menu sin iniciar sesion
+// Menu inicial del menu sin iniciar sesion
 const initial_menu = [
   // { role: 'appMenu' }
   ...(isMac
@@ -35,13 +35,13 @@ const initial_menu = [
     label: "LOGIN",
     click: async () => {
       const { mainWindow } = require("../main.js");
-      mainWindow.newTimer = false; //mirar si esto funciona
+      mainWindow.newTimer = false;
       mainWindow.loadFile("./HTML/loginform.html");
     },
   },
 ];
 
-// menu que sale cuando estas logueado
+// Menu que sale cuando estas logueado.
 const loged_menu = [
   // { role: 'appMenu' }
   ...(isMac

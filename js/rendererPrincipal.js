@@ -7,7 +7,7 @@ let divPrincipalInject = $(".body-casas");
 //Enviamos apenas abrimos la app un mensaje para cargar el contenido.
 ipcRenderer.send("load-content");
 
-//recebimos el contenido de la api.
+//Recibimos el contenido de la api.
 ipcRenderer.on("enviar-casas", function (e, info) {
   //Conversión del JSON a objeto.
   fotoObject = info.data;

@@ -3,9 +3,9 @@ let $ = ({ jQuery } = require("jquery"));
 
 let form = document.getElementById("edithouseform");
 
-ipcRenderer.send("inyectar-datos");//Hacemos petición para que nos devuelvan la info de la casa
+ipcRenderer.send("inyectar-datos"); //Hacemos petición para que nos devuelvan la info de la casa.
 
-//selectores
+//Selectores.
 let name = document.getElementById("nameInput");
 let rnumber = document.getElementById("r_numberInput");
 let people = document.getElementById("peopleInput");
@@ -23,29 +23,26 @@ let vacationtype = document.getElementById("typInput");
 let longitude = document.getElementById("longInput");
 let latitude = document.getElementById("latInput");
 
-
 ipcRenderer.on("enviando-datos-concretos", function (e, datos) {
-  let info = datos.data;//Recuperamos todos los datos
+  let info = datos.data; //Recuperamos todos los datos
   //Asignamos los valores que nos retornan dentro del formulario
-  name.value = info.nom
-  rnumber.value = info.nregistre
-  people.value = info.npersones
-  toilet.value = info.nbanys
-  beds.value = info.nllits
-  street.value = info.carrer
-  number.value = info.numero
-  municipality.value = info.municipi_id
-  category.value = info.categoria_id
-  description.value = info.descripcio
-  bath.value = info.nhabitacions
-  pisporta.value = info.pisporta
-  accommodationtype.value = info.tipus_allotjament_id
-  vacationtype.value = info.tipus_vacances_id
-  longitude.value = info.longitud
-  latitude.value = info.latitud
-})
-
-
+  name.value = info.nom;
+  rnumber.value = info.nregistre;
+  people.value = info.npersones;
+  toilet.value = info.nbanys;
+  beds.value = info.nllits;
+  street.value = info.carrer;
+  number.value = info.numero;
+  municipality.value = info.municipi_id;
+  category.value = info.categoria_id;
+  description.value = info.descripcio;
+  bath.value = info.nhabitacions;
+  pisporta.value = info.pisporta;
+  accommodationtype.value = info.tipus_allotjament_id;
+  vacationtype.value = info.tipus_vacances_id;
+  longitude.value = info.longitud;
+  latitude.value = info.latitud;
+});
 
 // Le da valor a todos los campos segun lo puesto en el formulario
 form.addEventListener("submit", function () {

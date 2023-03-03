@@ -15,7 +15,7 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, idusuario) {
   //Conversión del JSON a objeto.
   let fotoObject = info.data;
 
-  //Creación de los div con los botones de delete y edit
+  //Creación de los div con los botones de delete y edit.
   fotoObject.forEach((_element) => {
     let divPrincipal = $(`<div class="col-sm-4 formato-cards"></div>`);
 
@@ -32,12 +32,12 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, idusuario) {
 // Envia id al otro renderer.
 function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
-  // Si la id del usuario coincide con la id del propietario
+  // Si la id del usuario coincide con la id del propietario.
   if (user_id == propietari_id) {
     ipcRenderer.send("idcasa", id);
     ipcRenderer.send("editwindow");
   } else {
-    // si no tiene acceso a editar una casa sale un dialog que se activa desde el main
+    // Si no tiene acceso a editar una casa sale un dialog que se activa desde el main.
     ipcRenderer.send(
       "mostrarDialog",
       "You are not allowed to modify this house!!"

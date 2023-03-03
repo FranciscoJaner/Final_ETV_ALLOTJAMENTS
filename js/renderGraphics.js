@@ -3,13 +3,13 @@ const { ipcRenderer } = require("electron");
 const { Chart } = require("chart.js/auto");
 let $ = ({ jQuery } = require("jquery"));
 
-//selectores
+//Selectores.
 let graphic1 = document.getElementById("graphic-1");
 let graphic2 = document.getElementById("graphic-2");
 let graphic3 = document.getElementById("graphic-3");
 let graphic4 = document.getElementById("graphic-4");
 
-//variables con los gráficos
+//Variables con los gráficos.
 let informacion;
 let myChart1;
 let myChart2;
@@ -18,7 +18,7 @@ let myChart4;
 
 ipcRenderer.send("load-content-dashboard", "e");
 
-//nos comunicaremos con el mainProcess para hacer que nos devuelva la información de la api
+//Nos comunicaremos con el mainProcess para hacer que nos devuelva la información de la api.
 ipcRenderer.on("enviar-info-casas", function (e, infoCasas) {
   informacion = infoCasas.data;
   graph1();
@@ -27,7 +27,7 @@ ipcRenderer.on("enviar-info-casas", function (e, infoCasas) {
   graph4();
 });
 
-//ejecutamos los gráficos al recibir la información
+//Ejecutamos los gráficos al recibir la información.
 function graph1() {
   if (myChart1) {
     myChart1.destroy();
