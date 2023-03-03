@@ -36,12 +36,7 @@ function modificarCasa(id, propietari_id) {
     ipcRenderer.send("idcasa", id);
     ipcRenderer.send("editwindow");
   } else {
-    const { dialog } = require("electron");
-    dialog.showMessageBox({
-      title: "Warning",
-      buttons: ["Okay"],
-      type: "info",
-      message: "You are not allowed to modify this house!",
-    });
+    // si no tiene acceso a editar una casa sale un dialog que se activa desde el main
+    ipcRenderer.send("mostrarDialog");
   }
 }
