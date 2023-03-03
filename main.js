@@ -321,6 +321,36 @@ function editwindow() {
   mainWindow.loadFile("./html/form_edit_house.html");
 }
 
+ipcMain.on("inyectar-datos", function (e) {
+  const request = net.request({
+    method: "GET",
+    hostname: hostname,
+    port: 80,
+    path: `/etvServidor/public/api/allotjaments/${idcasa}`,
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+  });
+
+  let body = "";
+  request.on("response", (response) => {
+    response.on("data", (chunk) => {
+      body += chunk;
+    });
+
+    response.on("end", () => {
+      e.sender.send("enviando-datos-concretos",JSON.parse(body))
+    });
+  });
+
+  request.on("error", (error) => {
+    console.error(error);
+  });
+
+  request.end();
+})
+
 function mostrarDialog() {
   // dialog que se activa desde un renderer
   dialog.showMessageBox({
