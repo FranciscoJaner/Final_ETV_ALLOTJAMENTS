@@ -1,4 +1,4 @@
-const { ipcRenderer, dialog } = require("electron");
+const { ipcRenderer } = require("electron");
 let $ = ({ jQuery } = require("jquery"));
 
 //punteros
@@ -9,8 +9,8 @@ let user_id;
 ipcRenderer.send("load-content-dashboard");
 
 //Recbimos el contenido de la api.
-ipcRenderer.on("enviar-edit-mod", function (e, info, id) {
-  user_id = id;
+ipcRenderer.on("enviar-edit-mod", function (e, info, idusuario) {
+  user_id = idusuario;
 
   //Conversión del JSON a objeto.
   let fotoObject = info.data;
@@ -32,10 +32,11 @@ ipcRenderer.on("enviar-edit-mod", function (e, info, id) {
 // Envia id al otro renderer.
 function modificarCasa(id, propietari_id) {
   console.log("Modificando Casa, id: " + id);
-  ipcRenderer.send("give-id", id);
   if (user_id == propietari_id) {
-    ipcRenderer.send("editwindow")
+    ipcRenderer.send("idcasa", id);
+    ipcRenderer.send("editwindow");
   } else {
+    const { dialog } = require("electron");
     dialog.showMessageBox({
       title: "Warning",
       buttons: ["Okay"],

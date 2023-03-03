@@ -2,8 +2,6 @@ const { ipcRenderer } = require("electron");
 
 let form = document.getElementById("edithouseform");
 
-let id = "";
-
 // le da valor a todos los campos segun lo puesto en el formulario
 form.addEventListener("submit", function () {
   let name = document.getElementById("nameInput").value;
@@ -24,7 +22,6 @@ form.addEventListener("submit", function () {
   let latitude = document.getElementById("latInput").value;
 
   let editHouse = {
-    id: null,
     nom: name,
     descripcio: description,
     nregistre: rnumber,
@@ -45,11 +42,7 @@ form.addEventListener("submit", function () {
   };
 
   // Recoge la id del otro renderer
-  ipcRenderer.on("give-id", function (e, args) {
-    id = args;
-  });
-
-  ipcRenderer.send("edit_house", editHouse, id);
+  ipcRenderer.send("edit_house", editHouse);
 });
 
 ipcRenderer.on("edit-finished", function (e) {

@@ -4,6 +4,7 @@ const { menu, menu2 } = require("./js/menu.js");
 const { net } = require("electron");
 
 //variable globals
+let idcasa;
 let mainWindow;
 let userToken;
 let userId;
@@ -238,12 +239,12 @@ ipcMain.on("insert-house", function (e, info) {
 });
 
 //Main para editar una casa., en este le asignamos el token con un setHeader.
-ipcMain.on("edit_house", function (e, args, id) {
+ipcMain.on("edit_house", function (e, args) {
   const request = net.request({
     method: "PUT",
     hostname: hostname,
     protocol: protocol,
-    path: `etvServidor/public/api/allotjaments`,
+    path: `etvServidor/public/api/allotjaments/${idcasa}`,
     headers: {
       "Content-Type": "application/json",
       accept: "application/json",
@@ -252,18 +253,17 @@ ipcMain.on("edit_house", function (e, args, id) {
 
   let casa = args;
   casa.propietari_id = userId;
-  casa.id = id;
+
   const postData = JSON.stringify(casa);
+  console.log(postData);
 
   request.setHeader("Authorization", "Bearer " + userToken);
 
   request.on("response", (response) => {
-    response.on("data", (chunk) => {
-      body = `${chunk}`;
-    });
+    response.on("data", (chunk) => {});
 
     response.on("end", () => {
-      console.log(body);
+      console.log(response.statusCode);
     });
   });
 
@@ -305,10 +305,22 @@ ipcMain.on("delete_house", function (e, args) {
   request.end();
 });
 
+ipcMain.on("idcasa", function (e, id) {
+  idcasa = id;
+});
+
 ipcMain.on("editwindow", function () {
   editwindow();
 });
 
+ipcMain.on("edithouse", function () {
+  editwindow2();
+});
+
 function editwindow() {
   mainWindow.loadFile("./html/form_edit_house.html");
+}
+
+function editwindow2() {
+  mainWindow.loadFile("./html/edit_own_house.html");
 }
